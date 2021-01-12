@@ -1,12 +1,34 @@
-import React from "react";
+import React, { Component } from "react";
 import Hero from "../components/Hero";
 import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
+import API from "../utils/API";
 
-function Landing() {
+class Landing extends Component {
+  state = {
+    quote: "",
+  }
+
+  apiReq = () => {
+    API.getQuote().then((response) => {
+        const randNum = Math.floor(Math.random() * response.data.length)
+        const quote = response.data[randNum].text
+        console.log(quote)
+        this.setState({
+            quote: quote
+        });
+        
+    });
+  }
+  componentDidMount() {
+    this.apiReq()
+  }
+render() {
+
   return (
     <div>
+      "{this.state.quote}"
       <Hero backgroundImage="https://images.unsplash.com/photo-1609342122563-a43ac8917a3a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80">
         <h1>Evolve</h1>
         <h2>Connect your mind & body. </h2>
@@ -59,6 +81,7 @@ function Landing() {
       </Container>
     </div>
   );
+}
 }
 
 export default Landing;
