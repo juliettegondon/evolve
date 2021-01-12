@@ -42,7 +42,7 @@ class RandomQuote extends Component {
 					</Accordion.Toggle>
 				</Card.Header>
 				<Accordion.Collapse eventKey="0">
-					<Card.Body className="quote text-center">
+					<Card.Body className="accordion text-center">
 					"{this.state.quote}"
 					</Card.Body>
 				</Accordion.Collapse>
