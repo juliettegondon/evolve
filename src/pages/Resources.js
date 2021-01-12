@@ -1,61 +1,71 @@
-import React, { Component } from "react";
-import API from "../utils/API";
+import React from "react";
+import Hero from "../components/Hero";
+import ResourceCard from "../components/ResourceCard"
 import Container from "../components/Container";
-import SearchForm from "../components/SearchForm";
-import SearchResults from "../components/SearchResults";
-import Alert from "../components/Alert";
+import Row from "../components/Row";
+import Col from "../components/Col";
 
-class Resources extends Component {
-  state = {
-    search: "",
-    workouts: [],
-    results: [],
-    error: ""
-  };
 
-  // When the component mounts, get a list of all available base breeds and update this.state.breeds
-  componentDidMount() {
-    API.getWorkouts()
-      .then(res => this.setState({ workouts: res.data.message }))
-      .catch(err => console.log(err));
-  }
+function Resources() {
+	return (
+		<div>
+			<Hero backgroundImage="https://images.unsplash.com/photo-1609342122563-a43ac8917a3a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80">
+				<h1>Evolve</h1>
+				<h2>Connect your mind & body. </h2>
+			</Hero>
+			<Container style={{ marginTop: 30 }}>
+				<Row>
+					<Col size="md-12">
+						<h1 className="text-center">RESOURCES</h1>
+					</Col>
+				</Row>
 
-  handleInputChange = event => {
-    this.setState({ search: event.target.value });
-  };
+				<Row>
+					<Col size="md-12">
+            <ResourceCard></ResourceCard>
+					</Col>
+				</Row>
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    API.getWorkouts(this.state.search)
-      .then(res => {
-        if (res.data.status === "error") {
-          throw new Error(res.data.message);
-        }
-        this.setState({ results: res.data.message, error: "" });
-      })
-      .catch(err => this.setState({ error: err.message }));
-  };
-  render() {
-    return (
-      <div>
-        <Container style={{ minHeight: "80%" }}>
-          <h1 className="text-center">Search for a class!</h1>
-          <Alert
-            type="danger"
-            style={{ opacity: this.state.error ? 1 : 0, marginBottom: 10 }}
-          >
-            {this.state.error}
-          </Alert>
-          <SearchForm
-            handleFormSubmit={this.handleFormSubmit}
-            handleInputChange={this.handleInputChange}
-            workouts={this.state.workouts}
-          />
-          <SearchResults results={this.state.results} />
-        </Container>
-      </div>
-    );
-  }
+				<Row>
+					<Col size="md-12">
+						<div className="resource text-center">
+							<div className="card bg-light text-center">
+								<div className="card-body">
+									<h4 className="card-title">
+										{""}
+										<a href="https://www.google.com">
+											Wellness Video Library
+										</a>{" "}
+									</h4>
+									<p className="card-text">
+										Go to zen and back through your device
+									</p>
+								</div>
+							</div>
+						</div>
+					</Col>
+				</Row>
+
+				<Row>
+					<Col size="md-12">
+						<div className="resource text-center">
+							<div className="card bg-light text-dark text-center">
+								<div className="card-body">
+									<h4 className="card-title">
+										{" "}
+										<a href="https://www.google.com">Motivational Podcasts</a>{" "}
+									</h4>
+									<p className="card-text">
+										Tune in and learn from the experts
+									</p>
+								</div>
+							</div>
+						</div>
+					</Col>
+				</Row>
+			</Container>
+		</div>
+	);
 }
 
 export default Resources;
