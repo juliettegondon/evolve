@@ -14,7 +14,12 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "react-with-modal": "^0.2.3",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "@ag-grid-community/all-modules": "^25.0.0",
+    "@ag-grid-community/core": "^25.0.0",
+    "@ag-grid-community/react": "^25.0.0",
+    "ag-grid-community": "^25.0.0",
+    "ag-grid-react": "^25.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
