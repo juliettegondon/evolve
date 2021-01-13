@@ -1,8 +1,7 @@
 .accordion {
     max-width: 500px;
     align-items: center;
-    margin: 50px auto;
-    box-shadow: 0 0 1px rgba(0,0,0,0.1);
+    margin: auto;
     color: #50858bff;
     font-size: large;
     font-style: italic;
@@ -32,4 +31,6 @@
   .accordion .btn-link:focus {
     color: #50858bff;
     text-decoration: none;
+    border: none;
+    
   }
