@@ -20,7 +20,6 @@ function App() {
         <Navbar />
         <Wrapper>
           <Route exact path="/" component={Landing} />
-          <Route exact path="/landing" component={Landing} />
           <Route exact path="/physical" component={Physical} />
           <Route exact path="/mental" component={Mental} />
           <Route exact path="/resources" component={Resources} />
