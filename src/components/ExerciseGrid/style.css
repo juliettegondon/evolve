@@ -1,0 +1,37 @@
+
+.accordion {
+  max-width: 500px;
+  align-items: center;
+  margin: auto;
+  color: #50858bff;
+  font-size: large;
+  font-style: italic;
+}
+ 
+.accordion .card,
+.accordion .card:last-child .card-header {
+  border: none;
+  padding: 1;
+}
+ 
+.accordion .card-header {
+  border-bottom-color: #EDEFF0;
+  background: transparent;
+}
+ 
+ 
+.accordion .btn {
+  width: 100%;
+  font-weight: bold;
+  font-size: larger;
+  color: #50858bff;
+  padding: 0;
+}
+ 
+.accordion .btn-link:hover,
+.accordion .btn-link:focus {
+  color: #50858bff;
+  text-decoration: none;
+  border: none;
+  
+}
