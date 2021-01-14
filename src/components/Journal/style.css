@@ -1,0 +1,16 @@
+.mood {
+        background-color: #a1d2ceff !important;
+        border-width: 5px !important;
+        border: #78cad2ff !important;
+}
+
+.btn-group, .btn-group-vertical {
+   align-items: center !important;
+   margin: auto !important;
+   display: flex !important;
+   flex-direction: row !important;
+   justify-content: center !important;
+}
+.mood:hover {
+    background-color: #62a8acff !important;
+}
