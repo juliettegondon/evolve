@@ -4,6 +4,7 @@ import Hero from "../components/Hero";
 import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
+import { Link } from "react-router-dom";
 
 
 function Resources() {
@@ -27,7 +28,7 @@ function Resources() {
 								<div className="card-body">
 									<h4 className="card-title">
 										{""}
-										<a href="https://www.google.com">
+										<a href="https://www.chelseapiers.com/fitness/events/social-events/virtual-fitness-classes/">
 											Free Virtual Classes
 										</a>{" "}
 									</h4>
@@ -47,9 +48,9 @@ function Resources() {
 								<div className="card-body">
 									<h4 className="card-title">
 										{""}
-										<a href="https://www.google.com">
+										<Link to="/videolibrary">
 											Wellness Video Library
-										</a>{" "}
+										</Link>
 									</h4>
 									<p className="card-text">
 										Go to zen and back through your device
@@ -67,7 +68,9 @@ function Resources() {
 								<div className="card-body">
 									<h4 className="card-title">
 										{" "}
-										<a href="https://www.google.com">Motivational Podcasts</a>{" "}
+										<Link to="/podcast">
+											Insprational Podcast Library
+										</Link>
 									</h4>
 									<p className="card-text">
 										Tune in and learn from the experts

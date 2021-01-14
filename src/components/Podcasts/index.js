@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import './App.css';
+// import './App.css';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
@@ -17,7 +17,11 @@ class App extends Component {
             resizable: true,
             checkboxSelection: true,
             filter: true,
-            width: 650,
+            sortable: true,
+            filterParams: {
+              filterOptions: ['contains'],
+            },
+            width: 550,
           },
         {
           headerName: 'Link',
@@ -40,7 +44,8 @@ class App extends Component {
           field: 'Date',
           wrapText: true,
           resizable: true,
-          width: 75
+          sortable: true,
+          width: 150
 
         },
       ],
@@ -61,14 +66,11 @@ componentDidMount() {
   
   
 
-  onButtonClick = () => {
-    const selectedNodes = this.gridApi.getSelectedNodes();
-    const selectedData = selectedNodes.map(node => node.data);
-    const selectedDataString = selectedData
-      .map(node => `${node.make} ${node.model}`)
-      .join(', ');
-    alert(`Selected Nodes: ${selectedDataString}`);
-  }
+    onButtonClick = () => {
+      const selectedNodes = this.gridApi.getSelectedNodes();
+      const selectedData = selectedNodes.map(node => node.data.href);
+      window.open(`${selectedData}`,'popup','width=600,height=600,scrollbars=no,resizable=no');
+    }
 
   render() {
     return (
@@ -76,17 +78,17 @@ componentDidMount() {
         className="ag-theme-balham"
         style={{
           height: '700px',
-          width: '1200px'
+          width: '900px'
         }}
       >
-    <button type="button" onClick={this.onButtonClick}>
-        Selected Rows
+    <button type="button" class="btn-info" onClick={this.onButtonClick}>
+        Play Selected Podcast
     </button>
 
 
         <AgGridReact
           onGridReady={params => (this.gridApi = params.api)}
-          rowSelection="multiple"
+          rowSelection="single"
           columnDefs={this.state.columnDefs}
           rowData={this.state.rowData}
         ></AgGridReact>
