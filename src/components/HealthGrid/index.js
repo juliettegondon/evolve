@@ -4,107 +4,137 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
-class ExerciseGrid extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       columnDefs: [
         {
-            headerName: 'Day',
-            field: 'day',
-            wrapText: true,
-            autoHeight: true,
-            resizable: true,
-            checkboxSelection: true,
+          headerName: 'Day',
+          field: 'day',
+          wrapText: true,
+          autoHeight: true,
+          resizable: true,
+          checkboxSelection: true,
           },
         {
-          headerName: 'Activity',
-          field: 'activity',
+          headerName: 'BP Systolic',
+          field: 'bpSystolic',
           wrapText: true,
           autoHeight: true,
           resizable: true,
         },
         {
-          headerName: 'Duration',
-          field: 'duration',
+          headerName: 'BP Diastolic',
+          field: 'bpDiastolic',
           wrapText: true,
           autoHeight: true,
           resizable: true,
           editable: true,
         },
         {
-          headerName: 'Intensity',
-          field: 'intensity',
+          headerName: 'Weight',
+          field: 'weight',
           wrapText: true,
           autoHeight: true,
           resizable: true,
           editable: true,
         },
         {
-            headerName: 'Mood',
-            field: 'mood',
-            wrapText: true,
-            autoHeight: true,
-            resizable: true,
-            editable: true,
-          },
-          {
-            headerName: 'Notes',
-            field: 'notes',
-            wrapText: true,
-            autoHeight: true,
-            resizable: true,
-            editable: true,
-          }
+          headerName: 'Sugar AM',
+          field: 'sugarAM',
+          wrapText: true,
+          autoHeight: true,
+          resizable: true,
+          editable: true,
+        },
+        {
+          headerName: 'Sugar PM',
+          field: 'sugarPM',
+          wrapText: true,
+          autoHeight: true,
+          resizable: true,
+          editable: true,
+        },
+        {
+          headerName: 'Sleep hrs',
+          field: 'sleep',
+          wrapText: true,
+          autoHeight: true,
+          resizable: true,
+          editable: true,
+        },
+        {
+          headerName: 'Notes',
+          field: 'notes',
+          wrapText: true,
+          autoHeight: true,
+          resizable: true,
+          editable: true,
+        }
       ],
       rowData: [
         {   "day": "Monday", 
-            "activity": "Running",
-            "duration": 50,
-            "intensity": "High",
-            "mood": "Up",
+            "bpSystolic": "120",
+            "bpDiastolic": "85",
+            "weight": "225",
+            "sugarAM": "120",
+            "sugarPM": "130",
+            "sleep": "7",
             "notes": "Phasellus at rutrum nisl. Praesent sed massa ut ipsum bibendum porttitor",
         },
         {   "day": "Tuesday", 
-            "activity": "Running",
-            "duration": 50,
-            "intensity": "High",
-            "mood": "Up",
+            "bpSystolic": "120",
+            "bpDiastolic": "85",
+            "weight": "225",
+            "sugarAM": "120",
+            "sugarPM": "130",
+            "sleep": "7",
             "notes": "Proin hendrerit efficitur malesuada. Mauris lorem urna, sodales accumsan quam non, tristique tempor erat.",
         },
         {   "day": "Wednesday", 
-            "activity": "Running",
-            "duration": 50,
-            "intensity": "High",
-            "mood": "Up",
+            "bpSystolic": "120",
+            "bpDiastolic": "85",
+            "weight": "225",
+            "sugarAM": "120",
+            "sugarPM": "130",
+            "sleep": "7",
             "notes": "Ut et turpis non nunc maximus mollis a vitae tortor. Pellentesque mattis risus ac quam laoreet cursus",
         },
         {   "day": "Thursday", 
-            "activity": "Running",
-            "duration": 50,
-            "intensity": "High",
-            "mood": "Up",
+            "bpSystolic": "120",
+            "bpDiastolic": "85",
+            "weight": "225",
+            "sugarAM": "120",
+            "sugarPM": "130",
+            "sleep": "7",
             "notes": "Nunc vehicula, erat eget laoreet condimentum, felis ante malesuada leo,",
         },
         {   "day": "Friday", 
-            "activity": "Running",
-            "duration": 50,
-            "intensity": "High",
-            "mood": "Up",
+            "bpSystolic": "120",
+            "bpDiastolic": "85",
+            "weight": "225",
+            "sugarAM": "120",
+            "sugarPM": "130",
+            "sleep": "7",
             "notes": "Phasellus at rutrum nisl. Praesent sed massa ut ipsum bibendum porttitor",
         },
         {   "day": "Saturday", 
-            "activity": "Running",
-            "duration": 50,
-            "intensity": "High",
-            "mood": "Up",
+            "bpSystolic": "120",
+            "bpDiastolic": "85",
+            "weight": "225",
+            "sugarAM": "120",
+            "sugarPM": "130",
+            "sleep": "7",
             "notes": "Nulla bibendum magna nec sem pulvinar lobortis. Mauris et imperdiet urna",
         },
         {   "day": "Sunday", 
-            "activity": "Running",
-            "duration": 50,
-            "intensity": "High",
-            "mood": "Up",
+            "bpSystolic": "120",
+            "bpDiastolic": "85",
+            "weight": "225",
+            "sugarAM": "120",
+            "sugarPM": "130",
+            "sleep": "7",
             "notes": "Maecenas vel porta augue. Fusce mauris ex, dignissim et lacinia",
         },
     ],
@@ -121,7 +151,7 @@ class ExerciseGrid extends Component {
     const selectedNodes = this.gridApi.getSelectedNodes();
     const selectedData = selectedNodes.map(node => node.data);
     const selectedDataString = selectedData
-      .map(node => `day: ${node.day}, activity: ${node.activity}, Duration: ${node.duration}, Intensity: ${node.intensity}, Mood: ${node.mood}, Notes: ${node.notes}`)
+      .map(node => `${node.make} ${node.model}`)
       .join(', ');
     alert(`Selected Nodes: ${selectedDataString}`);
   };
@@ -136,7 +166,7 @@ class ExerciseGrid extends Component {
         }}
       >
     <button type="button" class="btn-info" onClick={this.onButtonClick}>
-        Save Selected Rows
+        Selected Rows
     </button>
 
 
@@ -151,4 +181,4 @@ class ExerciseGrid extends Component {
   }
 }
 
-export default ExerciseGrid;
+export default App;
