@@ -7,7 +7,7 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <Link className="navbar-brand" to="/">
-        EVOLVE
+        E-VOLVE
       </Link>
       <div>
         <ul className="navbar-nav">
