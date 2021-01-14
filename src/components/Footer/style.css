@@ -14,3 +14,14 @@
   color: white;
   background:linear-gradient(to right, #a1d2ceff, #78cad2ff, #62a8acff, #5497a7ff, #50858bff);
 }
+
+.contact {
+  justify-items: right;
+  color: #5497a7ff;
+}
+
+.contact:hover,
+.contact:focus {
+  justify-items: right;
+  color: #5497a7ff;
+}

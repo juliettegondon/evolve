@@ -1,3 +1,7 @@
 .MuiTypography-root.continuous-slider.MuiTypography-body1.MuiTypography-gutterBottom, .p {
     font-family: 'Comfortaa'!important;
 }
+
+.MuiSlider-root {
+    color: #78cad2ff !important;
+}

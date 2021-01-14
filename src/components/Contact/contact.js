@@ -2,7 +2,7 @@ import React from "react";
 //import Button from "react-bootstrap/Button";
 //import ButtonGroup from "react-bootstrap/ButtonGroup";
 
-const ContactUs = () => {
+const Contact = () => {
     return (
         <div>
             <div>
@@ -20,4 +20,4 @@ const ContactUs = () => {
     );
 };
 
-export default ContactUs
+export default Contact
