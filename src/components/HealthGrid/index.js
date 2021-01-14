@@ -13,64 +13,73 @@ class App extends Component {
           headerName: 'Day',
           field: 'day',
           wrapText: true,
-          autoHeight: true,
+          // autoHeight: true,
           resizable: true,
           checkboxSelection: true,
+          width: 130,
+
           },
         {
           headerName: 'BP Systolic',
           field: 'bpSystolic',
           wrapText: true,
-          autoHeight: true,
+          // autoHeight: true,
           resizable: true,
+          width: 100,
         },
         {
           headerName: 'BP Diastolic',
           field: 'bpDiastolic',
           wrapText: true,
-          autoHeight: true,
+          // autoHeight: true,
           resizable: true,
           editable: true,
+          width: 100,
         },
         {
           headerName: 'Weight',
           field: 'weight',
           wrapText: true,
-          autoHeight: true,
+          // autoHeight: true,
           resizable: true,
           editable: true,
+          width: 80,
         },
         {
           headerName: 'Sugar AM',
           field: 'sugarAM',
           wrapText: true,
-          autoHeight: true,
+          // autoHeight: true,
           resizable: true,
           editable: true,
+          width: 80,
         },
         {
           headerName: 'Sugar PM',
           field: 'sugarPM',
           wrapText: true,
-          autoHeight: true,
+          // autoHeight: true,
           resizable: true,
           editable: true,
+          width: 80,
         },
         {
           headerName: 'Sleep hrs',
           field: 'sleep',
           wrapText: true,
-          autoHeight: true,
+          // autoHeight: true,
           resizable: true,
           editable: true,
+          width: 80,
         },
         {
           headerName: 'Notes',
           field: 'notes',
           wrapText: true,
-          autoHeight: true,
+          // autoHeight: true,
           resizable: true,
           editable: true,
+          width: 500,
         }
       ],
       rowData: [
@@ -138,6 +147,9 @@ class App extends Component {
             "notes": "Maecenas vel porta augue. Fusce mauris ex, dignissim et lacinia",
         },
     ],
+
+    rowHeight: 60,
+    animateRows: true,
     };
   }
 
@@ -175,6 +187,8 @@ class App extends Component {
           rowSelection="multiple"
           columnDefs={this.state.columnDefs}
           rowData={this.state.rowData}
+          animateRows={this.state.animateRows}
+          rowHeight={this.state.rowHeight}
         ></AgGridReact>
       </div>
     );
