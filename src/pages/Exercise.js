@@ -3,8 +3,9 @@ import Hero from "../components/Hero";
 import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
+import ExerciseGrid from "../components/ExerciseGrid"
 
-function Health() {
+function Exercise() {
   return (
     <div>
       <Hero backgroundImage="https://images.unsplash.com/photo-1609342122563-a43ac8917a3a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80">
@@ -15,7 +16,10 @@ function Health() {
         <Row>
           <Col size="md-12">
             <p> 
-            EXERCISE LOGS!
+              <br></br>
+            <b>Your Personal Exercise Log!</b>
+            <br></br>
+            <ExerciseGrid></ExerciseGrid>
             </p>
           </Col>
         </Row>
@@ -24,4 +28,4 @@ function Health() {
   );
 }
 
-export default Health;
+export default Exercise;
