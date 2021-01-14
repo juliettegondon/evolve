@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import './style.css';
 import { AgGridReact } from 'ag-grid-react';
+import { Button } from 'react-bootstrap';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
-class App extends Component {
+class ExerciseGrid extends Component {
   constructor(props) {
     super(props);
     this.state = {
+
       columnDefs: [
         {
             headerName: 'Day',
@@ -117,8 +119,9 @@ class App extends Component {
         },
     ],
 
-    rowHeight: 60,
-    animateRows: true,
+  rowHeight: 60,
+  animateRows: true,
+
     };
   }
 
@@ -132,9 +135,9 @@ class App extends Component {
     const selectedNodes = this.gridApi.getSelectedNodes();
     const selectedData = selectedNodes.map(node => node.data);
     const selectedDataString = selectedData
-      .map(node => `Day: ${node.day}, Activity: ${node.activity}, Duration: ${node.duration}, Intensity: ${node.intensity}, Mood: ${node.mood}, Notes: ${node.notes}`)
+      .map(node => `day: ${node.day}, activity: ${node.activity}, Duration: ${node.duration}, Intensity: ${node.intensity}, Mood: ${node.mood}, Notes: ${node.notes}`)
       .join(', ');
-    alert(`Selected Info to Save: ${selectedDataString}`);
+    alert(`Selected Nodes: ${selectedDataString}`);
   };
 
   render() {
@@ -146,10 +149,11 @@ class App extends Component {
           width: '1200px'
         }}
       >
-    <button type="button" class="btn-info" onClick={this.onButtonClick}>
-    Save Selected Days
-    </button>
-
+<div className="mb-2">
+<Button onClick={this.openButtonClick}>
+            Save Selected Rows
+          </Button>
+          </div>
 
         <AgGridReact
           onGridReady={params => (this.gridApi = params.api)}
@@ -164,4 +168,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default ExerciseGrid;
