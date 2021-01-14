@@ -8,55 +8,64 @@ class ExerciseGrid extends Component {
   constructor(props) {
     super(props);
     this.state = {
+
       columnDefs: [
         {
             headerName: 'Day',
             field: 'day',
             wrapText: true,
-            autoHeight: true,
             resizable: true,
             checkboxSelection: true,
+            width: 130,
+
           },
         {
           headerName: 'Activity',
           field: 'activity',
           wrapText: true,
-          autoHeight: true,
+          // autoHeight: true,
           resizable: true,
+          width: 120,
+          columnCentered: true,
         },
         {
           headerName: 'Duration',
           field: 'duration',
           wrapText: true,
-          autoHeight: true,
+          // autoHeight: true,
           resizable: true,
           editable: true,
+          width: 100,
         },
         {
           headerName: 'Intensity',
           field: 'intensity',
           wrapText: true,
-          autoHeight: true,
+          // autoHeight: true,
           resizable: true,
           editable: true,
+          width: 100,
         },
         {
             headerName: 'Mood',
             field: 'mood',
             wrapText: true,
-            autoHeight: true,
+            // autoHeight: true,
             resizable: true,
             editable: true,
+            width: 100,
           },
           {
             headerName: 'Notes',
             field: 'notes',
             wrapText: true,
-            autoHeight: true,
+            // autoHeight: true,
             resizable: true,
             editable: true,
+            width: 600,
           }
       ],
+
       rowData: [
         {   "day": "Monday", 
             "activity": "Running",
@@ -108,6 +117,10 @@ class ExerciseGrid extends Component {
             "notes": "Maecenas vel porta augue. Fusce mauris ex, dignissim et lacinia",
         },
     ],
+
+  rowHeight: 60,
+  animateRows: true,
+
     };
   }
 
@@ -131,7 +144,7 @@ class ExerciseGrid extends Component {
       <div
         className="ag-theme-balham"
         style={{
-          height: '700px',
+          height: '500px',
           width: '1200px'
         }}
       >
@@ -145,6 +158,8 @@ class ExerciseGrid extends Component {
           rowSelection="multiple"
           columnDefs={this.state.columnDefs}
           rowData={this.state.rowData}
+          animateRows={this.state.animateRows}
+          rowHeight={this.state.rowHeight}
         ></AgGridReact>
       </div>
     );
