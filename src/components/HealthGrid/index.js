@@ -163,9 +163,9 @@ class App extends Component {
     const selectedNodes = this.gridApi.getSelectedNodes();
     const selectedData = selectedNodes.map(node => node.data);
     const selectedDataString = selectedData
-      .map(node => `${node.make} ${node.model}`)
+    .map(node => `Day: ${node.day}, bpSystolic: ${node.bpSystolic}, bpDiastolic: ${node.bpDiastolic}, Weight: ${node.weight}, sugarAM: ${node.sugarAM}, sugarPM: ${node.sugarPM}, Sleep: ${node.sleep}, Notes: ${node.notes}`)
       .join(', ');
-    alert(`Selected Nodes: ${selectedDataString}`);
+    alert(`Selected Info to Save: ${selectedDataString}`);
   };
 
   render() {
@@ -173,12 +173,12 @@ class App extends Component {
       <div
         className="ag-theme-balham"
         style={{
-          height: '700px',
+          height: '500px',
           width: '1200px'
         }}
       >
     <button type="button" class="btn-info" onClick={this.onButtonClick}>
-        Selected Rows
+        Save Selected Days
     </button>
 
 
