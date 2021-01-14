@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './style.css';
 import { AgGridReact } from 'ag-grid-react';
+import { Button } from 'react-bootstrap';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
@@ -135,10 +136,11 @@ class ExerciseGrid extends Component {
           width: '1200px'
         }}
       >
-    <button type="button" class="btn-info" onClick={this.onButtonClick}>
-        Save Selected Rows
-    </button>
-
+<div className="mb-2">
+<Button onClick={this.openButtonClick}>
+            Save Selected Rows
+          </Button>
+          </div>
 
         <AgGridReact
           onGridReady={params => (this.gridApi = params.api)}

@@ -1,5 +1,8 @@
 import React from "react";
 import "./style.css";
+/* import Contact from "../Contact"; */
+import { Link } from "react-router-dom";
+import MyModal from "../MyModal";
 
 function Footer() {
   return (

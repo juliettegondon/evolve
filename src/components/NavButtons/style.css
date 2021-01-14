@@ -1,0 +1,9 @@
+.navbar-brand {
+    color: #50858bff;
+}
+
+   
+.navbar-brand:hover,
+.navbar-brand:focus {
+  color: black;
+}
