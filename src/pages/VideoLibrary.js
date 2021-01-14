@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
+import Videos from "../components/Videos"
 
 function VideoLibrary() {
   return (
@@ -15,10 +16,7 @@ function VideoLibrary() {
         <Row>
           <Col size="md-12">
             <p> 
-             type
-             video
-             date
-             duration
+            <Videos></Videos>
             </p>
           </Col>
         </Row>

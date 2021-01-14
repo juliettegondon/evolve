@@ -1,9 +1,8 @@
 import React, { Component} from 'react';
-import './App.css';
+// import './App.css';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-// import videos from 'videos.json'
 
 class App extends Component {
   constructor(props) {
@@ -16,7 +15,11 @@ class App extends Component {
             wrapText: true,
             resizable: true,
             checkboxSelection: true,
+            sortable: true,
             filter: true,
+            filterParams: {
+              filterOptions: ['contains'],
+            },
             width: 650,
           },
         {
@@ -40,17 +43,22 @@ class App extends Component {
           field: 'Date',
           wrapText: true,
           resizable: true,
+          sortable: true,
           width: 75
-
         },
         {
-            headerName: 'Modality',
-            field: 'Modality',
-            wrapText: true,
-            resizable: true,
-            filter: true,
-            width: 120
+          headerName: 'Modality',
+          field: 'Modality',
+          wrapText: true,
+          resizable: true,
+          sortable: true,
+          filter: true,
+          filterParams: {
+            filterOptions: ['contains'],
           },
+          width: 120
+
+        },
       ],
       rowData: [],
     };
@@ -71,11 +79,8 @@ componentDidMount() {
 
   onButtonClick = () => {
     const selectedNodes = this.gridApi.getSelectedNodes();
-    const selectedData = selectedNodes.map(node => node.data);
-    const selectedDataString = selectedData
-      .map(node => `${node.make} ${node.model}`)
-      .join(', ');
-    alert(`Selected Nodes: ${selectedDataString}`);
+    const selectedData = selectedNodes.map(node => node.data.VideoHref);
+    window.open(`${selectedData}`,'popup','width=600,height=600,scrollbars=no,resizable=no');
   }
 
   render() {
@@ -84,17 +89,17 @@ componentDidMount() {
         className="ag-theme-balham"
         style={{
           height: '700px',
-          width: '1200px'
+          width: '1000px'
         }}
       >
-    <button type="button" onClick={this.onButtonClick}>
-        Selected Rows
+    <button type="button" class="btn-info" onClick={this.onButtonClick}>
+        Play Selected Video
     </button>
 
 
         <AgGridReact
           onGridReady={params => (this.gridApi = params.api)}
-          rowSelection="multiple"
+          rowSelection="single"
           columnDefs={this.state.columnDefs}
           rowData={this.state.rowData}
         ></AgGridReact>
