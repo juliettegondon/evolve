@@ -44,12 +44,13 @@ class App extends Component {
           field: 'Date',
           wrapText: true,
           resizable: true,
-          sortable: true,
+          // sortable: true,
           width: 150
 
         },
       ],
       rowData: [],
+      rowHeight: 40,
     };
   }
 
@@ -91,6 +92,7 @@ componentDidMount() {
           rowSelection="single"
           columnDefs={this.state.columnDefs}
           rowData={this.state.rowData}
+          rowHeight={this.state.rowHeight}
         ></AgGridReact>
       </div>
     );
