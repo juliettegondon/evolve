@@ -82,71 +82,7 @@ class App extends Component {
           width: 500,
         }
       ],
-      rowData: [
-        {   "day": "Monday", 
-            "bpSystolic": "120",
-            "bpDiastolic": "85",
-            "weight": "225",
-            "sugarAM": "120",
-            "sugarPM": "130",
-            "sleep": "7",
-            "notes": "Phasellus at rutrum nisl. Praesent sed massa ut ipsum bibendum porttitor",
-        },
-        {   "day": "Tuesday", 
-            "bpSystolic": "120",
-            "bpDiastolic": "85",
-            "weight": "225",
-            "sugarAM": "120",
-            "sugarPM": "130",
-            "sleep": "7",
-            "notes": "Proin hendrerit efficitur malesuada. Mauris lorem urna, sodales accumsan quam non, tristique tempor erat.",
-        },
-        {   "day": "Wednesday", 
-            "bpSystolic": "120",
-            "bpDiastolic": "85",
-            "weight": "225",
-            "sugarAM": "120",
-            "sugarPM": "130",
-            "sleep": "7",
-            "notes": "Ut et turpis non nunc maximus mollis a vitae tortor. Pellentesque mattis risus ac quam laoreet cursus",
-        },
-        {   "day": "Thursday", 
-            "bpSystolic": "120",
-            "bpDiastolic": "85",
-            "weight": "225",
-            "sugarAM": "120",
-            "sugarPM": "130",
-            "sleep": "7",
-            "notes": "Nunc vehicula, erat eget laoreet condimentum, felis ante malesuada leo,",
-        },
-        {   "day": "Friday", 
-            "bpSystolic": "120",
-            "bpDiastolic": "85",
-            "weight": "225",
-            "sugarAM": "120",
-            "sugarPM": "130",
-            "sleep": "7",
-            "notes": "Phasellus at rutrum nisl. Praesent sed massa ut ipsum bibendum porttitor",
-        },
-        {   "day": "Saturday", 
-            "bpSystolic": "120",
-            "bpDiastolic": "85",
-            "weight": "225",
-            "sugarAM": "120",
-            "sugarPM": "130",
-            "sleep": "7",
-            "notes": "Nulla bibendum magna nec sem pulvinar lobortis. Mauris et imperdiet urna",
-        },
-        {   "day": "Sunday", 
-            "bpSystolic": "120",
-            "bpDiastolic": "85",
-            "weight": "225",
-            "sugarAM": "120",
-            "sugarPM": "130",
-            "sleep": "7",
-            "notes": "Maecenas vel porta augue. Fusce mauris ex, dignissim et lacinia",
-        },
-    ],
+      rowData: [],
 
     rowHeight: 60,
     animateRows: true,
@@ -154,10 +90,15 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('https://api.myjson.com/bins/15psn9')
+  
+    fetch('health.json', {
+      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }})
       .then(result => result.json())
-      .then(rowData => this.setState({ rowData }));
-  }
+      .then(rowData => this.setState({ rowData }))
+    }
 
   onButtonClick = () => {
     const selectedNodes = this.gridApi.getSelectedNodes();
@@ -177,6 +118,9 @@ class App extends Component {
           width: '1200px'
         }}
       >
+
+    <p><br></br><b>Week of January 12th</b></p>
+
     <button type="button" class="btn-info" onClick={this.onButtonClick}>
         Save Selected Days
     </button>

@@ -4,10 +4,17 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
+
+// var today = new Date();
+// var first = new Date(today.getFullYear(), 0, 1);
+// var theDay = Math.round(((today - first) / 1000 / 60 / 60 / 24) + .5, 0);
+
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+
       columnDefs: [
         {
             headerName: 'Day',
@@ -22,16 +29,13 @@ class App extends Component {
           headerName: 'Activity',
           field: 'activity',
           wrapText: true,
-          // autoHeight: true,
           resizable: true,
           width: 120,
-          // columnCentered: true,
         },
         {
           headerName: 'Duration',
           field: 'duration',
           wrapText: true,
-          // autoHeight: true,
           resizable: true,
           editable: true,
           width: 100,
@@ -40,7 +44,6 @@ class App extends Component {
           headerName: 'Intensity',
           field: 'intensity',
           wrapText: true,
-          // autoHeight: true,
           resizable: true,
           editable: true,
           width: 100,
@@ -49,7 +52,6 @@ class App extends Component {
             headerName: 'Mood',
             field: 'mood',
             wrapText: true,
-            // autoHeight: true,
             resizable: true,
             editable: true,
             width: 100,
@@ -58,64 +60,13 @@ class App extends Component {
             headerName: 'Notes',
             field: 'notes',
             wrapText: true,
-            // autoHeight: true,
             resizable: true,
             editable: true,
             width: 600,
           }
       ],
 
-      rowData: [
-        {   "day": "Monday", 
-            "activity": "Running",
-            "duration": 50,
-            "intensity": "High",
-            "mood": "Up",
-            "notes": "Phasellus at rutrum nisl. Praesent sed massa ut ipsum bibendum porttitor",
-        },
-        {   "day": "Tuesday", 
-            "activity": "Running",
-            "duration": 50,
-            "intensity": "High",
-            "mood": "Up",
-            "notes": "Proin hendrerit efficitur malesuada. Mauris lorem urna, sodales accumsan quam non, tristique tempor erat.",
-        },
-        {   "day": "Wednesday", 
-            "activity": "Running",
-            "duration": 50,
-            "intensity": "High",
-            "mood": "Up",
-            "notes": "Ut et turpis non nunc maximus mollis a vitae tortor. Pellentesque mattis risus ac quam laoreet cursus",
-        },
-        {   "day": "Thursday", 
-            "activity": "Running",
-            "duration": 50,
-            "intensity": "High",
-            "mood": "Up",
-            "notes": "Nunc vehicula, erat eget laoreet condimentum, felis ante malesuada leo,",
-        },
-        {   "day": "Friday", 
-            "activity": "Running",
-            "duration": 50,
-            "intensity": "High",
-            "mood": "Up",
-            "notes": "Phasellus at rutrum nisl. Praesent sed massa ut ipsum bibendum porttitor",
-        },
-        {   "day": "Saturday", 
-            "activity": "Running",
-            "duration": 50,
-            "intensity": "High",
-            "mood": "Up",
-            "notes": "Nulla bibendum magna nec sem pulvinar lobortis. Mauris et imperdiet urna",
-        },
-        {   "day": "Sunday", 
-            "activity": "Running",
-            "duration": 50,
-            "intensity": "High",
-            "mood": "Up",
-            "notes": "Maecenas vel porta augue. Fusce mauris ex, dignissim et lacinia",
-        },
-    ],
+      rowData: [ ],
 
     rowHeight: 60,
     animateRows: true,
@@ -123,10 +74,15 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('https://api.myjson.com/bins/15psn9')
+  
+    fetch('exercise.json', {
+      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }})
       .then(result => result.json())
-      .then(rowData => this.setState({ rowData }));
-  }
+      .then(rowData => this.setState({ rowData }))
+    }
 
   onButtonClick = () => {
     const selectedNodes = this.gridApi.getSelectedNodes();
@@ -138,6 +94,7 @@ class App extends Component {
   };
 
   render() {
+
     return (
       <div
         className="ag-theme-balham"
@@ -146,6 +103,13 @@ class App extends Component {
           width: '1200px'
         }}
       >
+
+
+
+
+<p><br>
+</br><b>Week of January 12th</b></p>
+
     <button type="button" class="btn-info" onClick={this.onButtonClick}>
     Save Selected Days
     </button>
