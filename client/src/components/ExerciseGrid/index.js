@@ -3,7 +3,8 @@ import './style.css';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-
+import Slider from "../Slider";
+import { Card } from "react-bootstrap";
 
 
 class App extends Component {
@@ -99,9 +100,7 @@ class App extends Component {
           width: '1200px'
         }}
       >
-
-
-
+<br></br>
 
 <p><br>
 </br><b>Week of January 12th</b></p>
