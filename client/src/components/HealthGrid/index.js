@@ -92,18 +92,22 @@ class App extends Component {
 
   componentDidMount() {
   
-    fetch('health.json', {
+let yearWeek = '2021-2'
+
+    fetch('/api/health/' + yearWeek, {
       headers : { 
         'Content-Type': 'application/json',
         'Accept': 'application/json'
        }})
       .then(result => result.json())
-      .then(rowData => this.setState({ rowData }))
+      .then(rowData => this.setState({ rowData:rowData.healthData }))
     }
 
   onButtonClick = () => {
     const selectedNodes = this.gridApi.getSelectedNodes();
+    console.log(selectedNodes)
     const selectedData = selectedNodes.map(node => node.data);
+    console.log(selectedData)
     const selectedDataString = selectedData
     .map(node => `Day: ${node.day}, bpSystolic: ${node.bpSystolic}, bpDiastolic: ${node.bpDiastolic}, Weight: ${node.weight}, sugarAM: ${node.sugarAM}, sugarPM: ${node.sugarPM}, Sleep: ${node.sleep}, Notes: ${node.notes}`)
       .join(', ');
