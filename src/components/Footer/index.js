@@ -1,13 +1,14 @@
 import React from "react";
 import "./style.css";
-/* import Contact from "../Contact"; */
 import { Link } from "react-router-dom";
-import MyModal from "../MyModal";
+
 
 function Footer() {
   return (
     <footer className="footer">
-      <span>A D FJ 2021</span>
+<span> <Link to="/Contact" className="alignLeft">Contact Us</Link>A D F J 2021</span>
+<span><Link to="/Contact" className="alignRight">Contact Us</Link></span>
+
     </footer>
   );
 }

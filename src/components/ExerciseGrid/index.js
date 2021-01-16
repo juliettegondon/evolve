@@ -5,10 +5,6 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
 
-// var today = new Date();
-// var first = new Date(today.getFullYear(), 0, 1);
-// var theDay = Math.round(((today - first) / 1000 / 60 / 60 / 24) + .5, 0);
-
 
 class App extends Component {
   constructor(props) {
