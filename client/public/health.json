@@ -1,72 +1,72 @@
 [
     {
         "day": "Monday",
-        "bpSystolic": "100",
-        "bpDiastolic": "85",
-        "weight": "225",
-        "sugarAM": "120",
-        "sugarPM": "130",
-        "sleep": "7",
-        "notes": "Monday ... Phasellus at rutrum nisl. Praesent sed massa ut ipsum bibendum porttitor"
+        "bpSystolic": "",
+        "bpDiastolic": "",
+        "weight": "",
+        "sugarAM": "",
+        "sugarPM": "",
+        "sleep": "",
+        "notes": ""
     },
     {
         "day": "Tuesday",
-        "bpSystolic": "120",
-        "bpDiastolic": "85",
-        "weight": "225",
-        "sugarAM": "120",
-        "sugarPM": "130",
-        "sleep": "7",
-        "notes": "Proin hendrerit efficitur malesuada. Mauris lorem urna, sodales accumsan quam non, tristique tempor erat."
+        "bpSystolic": "",
+        "bpDiastolic": "",
+        "weight": "",
+        "sugarAM": "",
+        "sugarPM": "",
+        "sleep": "",
+        "notes": ""
     },
     {
         "day": "Wednesday",
-        "bpSystolic": "120",
-        "bpDiastolic": "85",
-        "weight": "225",
-        "sugarAM": "120",
-        "sugarPM": "130",
-        "sleep": "7",
-        "notes": "Ut et turpis non nunc maximus mollis a vitae tortor. Pellentesque mattis risus ac quam laoreet cursus"
+        "bpSystolic": "",
+        "bpDiastolic": "",
+        "weight": "",
+        "sugarAM": "",
+        "sugarPM": "",
+        "sleep": "",
+        "notes": ""
     },
     {
         "day": "Thursday",
-        "bpSystolic": "120",
-        "bpDiastolic": "85",
-        "weight": "225",
-        "sugarAM": "120",
-        "sugarPM": "130",
-        "sleep": "7",
-        "notes": "Nunc vehicula, erat eget laoreet condimentum, felis ante malesuada leo,"
+        "bpSystolic": "",
+        "bpDiastolic": "",
+        "weight": "",
+        "sugarAM": "",
+        "sugarPM": "",
+        "sleep": "",
+        "notes": ""
     },
     {
         "day": "Friday",
-        "bpSystolic": "120",
-        "bpDiastolic": "85",
-        "weight": "225",
-        "sugarAM": "120",
-        "sugarPM": "130",
-        "sleep": "7",
-        "notes": "Phasellus at rutrum nisl. Praesent sed massa ut ipsum bibendum porttitor"
+        "bpSystolic": "",
+        "bpDiastolic": "",
+        "weight": "",
+        "sugarAM": "",
+        "sugarPM": "",
+        "sleep": "",
+        "notes": ""
     },
     {
         "day": "Saturday",
-        "bpSystolic": "120",
-        "bpDiastolic": "85",
-        "weight": "225",
-        "sugarAM": "120",
-        "sugarPM": "130",
-        "sleep": "7",
-        "notes": "Nulla bibendum magna nec sem pulvinar lobortis. Mauris et imperdiet urna"
+        "bpSystolic": "",
+        "bpDiastolic": "",
+        "weight": "",
+        "sugarAM": "",
+        "sugarPM": "",
+        "sleep": "",
+        "notes": ""
     },
     {
         "day": "Sunday",
-        "bpSystolic": "120",
-        "bpDiastolic": "85",
-        "weight": "225",
-        "sugarAM": "120",
-        "sugarPM": "130",
-        "sleep": "7",
-        "notes": "Maecenas vel porta augue. Fusce mauris ex, dignissim et lacinia"
+        "bpSystolic": "",
+        "bpDiastolic": "",
+        "weight": "",
+        "sugarAM": "",
+        "sugarPM": "",
+        "sleep": "",
+        "notes": ""
     }
 ]
