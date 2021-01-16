@@ -3,6 +3,7 @@ import './style.css';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+import Picker from '../Picker'
 
 class App extends Component {
   constructor(props) {
@@ -118,8 +119,7 @@ class App extends Component {
           width: '1200px'
         }}
       >
-
-    <p><br></br><b>Week of January 12th</b></p>
+<Picker></Picker>
 
     <button type="button" class="btn-info" onClick={this.onButtonClick}>
         Save Selected Days

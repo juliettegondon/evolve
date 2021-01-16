@@ -19,7 +19,7 @@ function Exercise() {
           <Col size="md-12">
             <p> 
               <br></br>
-            <b>Your Personal Exercise Log!</b>
+            <b>Your Personal Exercise Log</b>
             <br></br>
             <ExerciseGrid></ExerciseGrid>
             </p>
