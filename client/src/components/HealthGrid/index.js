@@ -17,7 +17,7 @@ class App extends Component {
           field: 'day',
           wrapText: true,
           resizable: true,
-          checkboxSelection: true,
+          // checkboxSelection: true,
           width: 130,
 
           },
@@ -26,6 +26,7 @@ class App extends Component {
           field: 'bpSystolic',
           wrapText: true,
           resizable: true,
+          editable: true,
           width: 100,
         },
         {
@@ -84,11 +85,14 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
+componentDidMount() {
   
+    let today = new Date();
+    let startYearWeek = today.toJSON().substring(0, 4) + "-" + getWeek(today)
+  
+  this.setState({yearWeek: startYearWeek})
 
-this.getData()
-
+  // this.getData()
 
 fetch('health.json', {
   headers : { 
@@ -123,12 +127,18 @@ getData = () =>{
 
 
   onButtonClick = () => {
+    this.gridApi.selectAll();
     const selectedNodes = this.gridApi.getSelectedNodes();
     console.log(selectedNodes)
     const selectedData = selectedNodes.map(node => node.data);
-    console.log(selectedData)
+    console.log(selectedData);
+      localStorage.setItem('data', JSON.stringify(selectedData))
+
+    let gridSave = `{ yearWeek: '${this.state.yearWeek}', userID: 'fred', healthData: ${JSON.stringify(selectedData)}}`;
+    console.log(gridSave);
+    alert(gridSave)
     const selectedDataString = selectedData
-    .map(node => `Day: ${node.day}, bpSystolic: ${node.bpSystolic}, bpDiastolic: ${node.bpDiastolic}, Weight: ${node.weight}, sugarAM: ${node.sugarAM}, sugarPM: ${node.sugarPM}, Sleep: ${node.sleep}, Notes: ${node.notes}`)
+    .map(node => `yearWeek: ${this.state.yearWeek} Day: ${node.day}, bpSystolic: ${node.bpSystolic}, bpDiastolic: ${node.bpDiastolic}, Weight: ${node.weight}, sugarAM: ${node.sugarAM}, sugarPM: ${node.sugarPM}, Sleep: ${node.sleep}, Notes: ${node.notes}`)
       .join(', ');
     alert(`Selected Info to Save: ${selectedDataString}`);
   };
@@ -140,6 +150,8 @@ pickerHandler= (date)=> {
 
    this.setState({yearWeek: pickedDate},  this.getData)
 }
+
+
 
   render() {
     return (
@@ -153,7 +165,7 @@ pickerHandler= (date)=> {
 <Picker action={this.pickerHandler}></Picker>
 
     <button type="button" class="btn-info" onClick={this.onButtonClick}>
-        Save Selected Days
+        Save Your Week
     </button>
 
         <AgGridReact

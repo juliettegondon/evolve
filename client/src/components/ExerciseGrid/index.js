@@ -143,7 +143,7 @@ this.getData()
 <Picker action={this.pickerHandler}></Picker>
 
     <button type="button" class="btn-info" onClick={this.onButtonClick}>
-    Save Selected Days
+    Save Your Week
     </button>
 
 
