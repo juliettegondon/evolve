@@ -3,9 +3,8 @@ import './style.css';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-import Slider from "../Slider";
-import { Card } from "react-bootstrap";
-
+import Picker from '../Picker'
+import { getWeek } from 'date-fns'
 
 class App extends Component {
   constructor(props) {
@@ -25,6 +24,7 @@ class App extends Component {
         {
           headerName: 'Activity',
           field: 'activity',
+          editable: true,
           wrapText: true,
           resizable: true,
           width: 120,
@@ -72,6 +72,12 @@ class App extends Component {
 
   componentDidMount() {
   
+
+      
+
+this.getData()
+
+
     fetch('exercise.json', {
       headers : { 
         'Content-Type': 'application/json',
@@ -81,6 +87,30 @@ class App extends Component {
       .then(rowData => this.setState({ rowData }))
     }
 
+
+    getData = () =>{
+      fetch('/api/exercise/' + this.state.yearWeek, {
+        headers : { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+         }})
+        .then(result => result.json())
+        .then(rowData => this.setState({ rowData:rowData.exerciseData }))
+    
+        .catch((error)=>{
+          fetch('health.json', {
+            headers : { 
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+             }})
+            .then(result => result.json())
+            .then(rowData => this.setState({ rowData }))
+    
+        })
+    }
+    
+    
+
   onButtonClick = () => {
     const selectedNodes = this.gridApi.getSelectedNodes();
     const selectedData = selectedNodes.map(node => node.data);
@@ -89,6 +119,14 @@ class App extends Component {
       .join(', ');
     alert(`Selected Info to Save: ${selectedDataString}`);
   };
+
+  pickerHandler= (date)=> {
+    console.log(date)
+    let pickedDate = new Date(date).toJSON().substring(0, 4) + "-" + getWeek(date)
+    console.log(pickedDate)
+  
+     this.setState({yearWeek: pickedDate},  this.getData)
+  }
 
   render() {
 
@@ -102,8 +140,7 @@ class App extends Component {
       >
 <br></br>
 
-<p><br>
-</br><b>Week of January 12th</b></p>
+<Picker action={this.pickerHandler}></Picker>
 
     <button type="button" class="btn-info" onClick={this.onButtonClick}>
     Save Selected Days

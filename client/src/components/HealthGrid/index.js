@@ -4,17 +4,18 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import Picker from '../Picker'
+import { getWeek } from 'date-fns'
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      yearWeek: '',
       columnDefs: [
         {
           headerName: 'Day',
           field: 'day',
           wrapText: true,
-          // autoHeight: true,
           resizable: true,
           checkboxSelection: true,
           width: 130,
@@ -24,7 +25,6 @@ class App extends Component {
           headerName: 'BP Systolic',
           field: 'bpSystolic',
           wrapText: true,
-          // autoHeight: true,
           resizable: true,
           width: 100,
         },
@@ -32,7 +32,6 @@ class App extends Component {
           headerName: 'BP Diastolic',
           field: 'bpDiastolic',
           wrapText: true,
-          // autoHeight: true,
           resizable: true,
           editable: true,
           width: 100,
@@ -41,7 +40,6 @@ class App extends Component {
           headerName: 'Weight',
           field: 'weight',
           wrapText: true,
-          // autoHeight: true,
           resizable: true,
           editable: true,
           width: 80,
@@ -50,7 +48,6 @@ class App extends Component {
           headerName: 'Sugar AM',
           field: 'sugarAM',
           wrapText: true,
-          // autoHeight: true,
           resizable: true,
           editable: true,
           width: 80,
@@ -59,7 +56,6 @@ class App extends Component {
           headerName: 'Sugar PM',
           field: 'sugarPM',
           wrapText: true,
-          // autoHeight: true,
           resizable: true,
           editable: true,
           width: 80,
@@ -68,7 +64,6 @@ class App extends Component {
           headerName: 'Sleep hrs',
           field: 'sleep',
           wrapText: true,
-          // autoHeight: true,
           resizable: true,
           editable: true,
           width: 80,
@@ -77,7 +72,6 @@ class App extends Component {
           headerName: 'Notes',
           field: 'notes',
           wrapText: true,
-          // autoHeight: true,
           resizable: true,
           editable: true,
           width: 500,
@@ -92,16 +86,41 @@ class App extends Component {
 
   componentDidMount() {
   
-let yearWeek = '2021-2'
 
-    fetch('/api/health/' + yearWeek, {
-      headers : { 
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-       }})
-      .then(result => result.json())
-      .then(rowData => this.setState({ rowData:rowData.healthData }))
+this.getData()
+
+
+fetch('health.json', {
+  headers : { 
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+   }})
+  .then(result => result.json())
+  .then(rowData => this.setState({ rowData }))
+
     }
+
+getData = () =>{
+  fetch('/api/health/' + this.state.yearWeek, {
+    headers : { 
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+     }})
+    .then(result => result.json())
+    .then(rowData => this.setState({ rowData:rowData.healthData }))
+
+    .catch((error)=>{
+      fetch('health.json', {
+        headers : { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+         }})
+        .then(result => result.json())
+        .then(rowData => this.setState({ rowData }))
+
+    })
+}
+
 
   onButtonClick = () => {
     const selectedNodes = this.gridApi.getSelectedNodes();
@@ -114,6 +133,14 @@ let yearWeek = '2021-2'
     alert(`Selected Info to Save: ${selectedDataString}`);
   };
 
+pickerHandler= (date)=> {
+  console.log(date)
+  let pickedDate = new Date(date).toJSON().substring(0, 4) + "-" + getWeek(date)
+  console.log(pickedDate)
+
+   this.setState({yearWeek: pickedDate},  this.getData)
+}
+
   render() {
     return (
       <div
@@ -123,12 +150,11 @@ let yearWeek = '2021-2'
           width: '1200px'
         }}
       >
-<Picker></Picker>
+<Picker action={this.pickerHandler}></Picker>
 
     <button type="button" class="btn-info" onClick={this.onButtonClick}>
         Save Selected Days
     </button>
-
 
         <AgGridReact
           onGridReady={params => (this.gridApi = params.api)}
@@ -139,6 +165,9 @@ let yearWeek = '2021-2'
           rowHeight={this.state.rowHeight}
         ></AgGridReact>
       </div>
+
+
+
     );
   }
 }
