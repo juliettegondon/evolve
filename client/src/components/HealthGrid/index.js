@@ -5,7 +5,6 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import Picker from '../Picker'
 import { getWeek } from 'date-fns'
-// import { getDisplayDate } from '@material-ui/pickers/_helpers/text-field-helper';
 
 class App extends Component {
   constructor(props) {
@@ -17,7 +16,6 @@ class App extends Component {
           headerName: 'Day',
           field: 'day',
           wrapText: true,
-          // autoHeight: true,
           resizable: true,
           checkboxSelection: true,
           width: 130,
@@ -27,7 +25,6 @@ class App extends Component {
           headerName: 'BP Systolic',
           field: 'bpSystolic',
           wrapText: true,
-          // autoHeight: true,
           resizable: true,
           width: 100,
         },
@@ -35,7 +32,6 @@ class App extends Component {
           headerName: 'BP Diastolic',
           field: 'bpDiastolic',
           wrapText: true,
-          // autoHeight: true,
           resizable: true,
           editable: true,
           width: 100,
@@ -44,7 +40,6 @@ class App extends Component {
           headerName: 'Weight',
           field: 'weight',
           wrapText: true,
-          // autoHeight: true,
           resizable: true,
           editable: true,
           width: 80,
@@ -53,7 +48,6 @@ class App extends Component {
           headerName: 'Sugar AM',
           field: 'sugarAM',
           wrapText: true,
-          // autoHeight: true,
           resizable: true,
           editable: true,
           width: 80,
@@ -62,7 +56,6 @@ class App extends Component {
           headerName: 'Sugar PM',
           field: 'sugarPM',
           wrapText: true,
-          // autoHeight: true,
           resizable: true,
           editable: true,
           width: 80,
@@ -71,7 +64,6 @@ class App extends Component {
           headerName: 'Sleep hrs',
           field: 'sleep',
           wrapText: true,
-          // autoHeight: true,
           resizable: true,
           editable: true,
           width: 80,
@@ -80,7 +72,6 @@ class App extends Component {
           headerName: 'Notes',
           field: 'notes',
           wrapText: true,
-          // autoHeight: true,
           resizable: true,
           editable: true,
           width: 500,
