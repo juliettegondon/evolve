@@ -22,14 +22,16 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
+console.log(req.params.yearWeek)
+
     db.Health
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
+      .findOneAndReplace({yearWeek:req.params.yearWeek }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
     db.Health
-      .findById({ _id: req.params.id })
+      .findOne({yearWeek:req.params.yearWeek})
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

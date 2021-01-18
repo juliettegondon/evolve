@@ -5,12 +5,14 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import Picker from '../Picker'
 import { getWeek } from 'date-fns'
+// import API from '../../utils/API';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       yearWeek: '',
+      gridData: '',
       columnDefs: [
         {
           headerName: 'Day',
@@ -90,17 +92,7 @@ componentDidMount() {
     let today = new Date();
     let startYearWeek = today.toJSON().substring(0, 4) + "-" + getWeek(today)
   
-  this.setState({yearWeek: startYearWeek})
-
-  // this.getData()
-
-fetch('health.json', {
-  headers : { 
-    'Content-Type': 'application/json',
-    'Accept': 'application/json'
-   }})
-  .then(result => result.json())
-  .then(rowData => this.setState({ rowData }))
+    this.setState({yearWeek: startYearWeek}, this.getData)
 
     }
 
@@ -125,6 +117,44 @@ getData = () =>{
     })
 }
 
+saveWeek = (gridData) =>{
+  fetch('/api/health/', {
+    headers : {'Content-Type': 'application/json', 'Accept': 'application/json'},
+    method: 'POST',
+    body: gridData})
+    .then(result => result.json())
+            .then(rowData => this.setState({ rowData }))
+    .catch((error)=>{
+      console.log(error)
+})
+this.getData()
+}
+
+updateWeek = (gridData) =>{
+
+  console.log(gridData)
+  fetch('/api/health/' + this.state.yearWeek, {
+    headers : {'Content-Type': 'application/json', 'Accept': 'application/json'},
+    method: 'PUT',
+    body: gridData})
+    .then(result => result.json())
+    .catch((error)=>{
+      console.log(error)
+      this.getData()
+})}
+
+eraseWeek = () =>{
+  fetch('/api/health/' + this.state.yearWeek, {
+    method: 'DELETE',
+  })
+    .then(result => result.text())
+    .then(result=> console.log("delete result: " + result))
+    .catch((error)=>{
+      console.log(error)
+})
+this.getData()
+}
+
 
   onButtonClick = () => {
     this.gridApi.selectAll();
@@ -134,14 +164,34 @@ getData = () =>{
     console.log(selectedData);
       localStorage.setItem('data', JSON.stringify(selectedData))
 
-    let gridSave = `{ yearWeek: '${this.state.yearWeek}', userID: 'fred', healthData: ${JSON.stringify(selectedData)}}`;
+    let gridSave = `[{"yearWeek": "${this.state.yearWeek}", "userID": "Bob", "healthData": ${JSON.stringify(selectedData)}}]`;
     console.log(gridSave);
-    alert(gridSave)
+    this.setState({gridData: gridSave})
+    this.saveWeek(gridSave)
     const selectedDataString = selectedData
     .map(node => `yearWeek: ${this.state.yearWeek} Day: ${node.day}, bpSystolic: ${node.bpSystolic}, bpDiastolic: ${node.bpDiastolic}, Weight: ${node.weight}, sugarAM: ${node.sugarAM}, sugarPM: ${node.sugarPM}, Sleep: ${node.sleep}, Notes: ${node.notes}`)
       .join(', ');
-    alert(`Selected Info to Save: ${selectedDataString}`);
+    ;
   };
+
+    onUpdateButtonClick = () => {
+    this.gridApi.selectAll();
+    const selectedUpdateNodes = this.gridApi.getSelectedNodes();
+    console.log(selectedUpdateNodes)
+    const selectedUpdateData = selectedUpdateNodes.map(node => node.data);
+    console.log(selectedUpdateData);
+    let gridSave = `[{"yearWeek": "${this.state.yearWeek}", "healthData": ${JSON.stringify(selectedUpdateData)}}]`;
+    console.log(gridSave);
+
+    this.setState({gridData: gridSave})
+
+    this.updateWeek(gridSave)
+    const selectedDataString = selectedUpdateData
+    .map(node => `yearWeek: ${this.state.yearWeek} Day: ${node.day}, bpSystolic: ${node.bpSystolic}, bpDiastolic: ${node.bpDiastolic}, Weight: ${node.weight}, sugarAM: ${node.sugarAM}, sugarPM: ${node.sugarPM}, Sleep: ${node.sleep}, Notes: ${node.notes}`)
+      .join(', ');
+    ;
+  };
+
 
 pickerHandler= (date)=> {
   console.log(date)
@@ -168,6 +218,18 @@ pickerHandler= (date)=> {
         Save Your Week
     </button>
 
+    <button type="button" class="btn-warning" onClick={this.onUpdateButtonClick}>
+        Update this Week
+    </button>
+
+    <button type="button" class="btn-danger" onClick={this.eraseWeek}>
+        Erase this Week 
+    </button>
+
+    <button type="button" class="btn-dark" onClick={this.updateWeek}>
+        Clear the Grid
+    </button>
+
         <AgGridReact
           onGridReady={params => (this.gridApi = params.api)}
           rowSelection="multiple"
@@ -177,9 +239,6 @@ pickerHandler= (date)=> {
           rowHeight={this.state.rowHeight}
         ></AgGridReact>
       </div>
-
-
-
     );
   }
 }
