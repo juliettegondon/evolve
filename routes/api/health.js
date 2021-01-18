@@ -11,6 +11,7 @@ router
   .route("/:yearWeek")
   .get(healthController.findByYearWeek)
   .put(healthController.update)
+  .patch(healthController.update)
   .delete(healthController.remove);
 
 module.exports = router;
