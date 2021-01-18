@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import './style.css';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -6,6 +6,7 @@ import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import Picker from '../Picker'
 import { getWeek } from 'date-fns'
 // import API from '../../utils/API';
+import mongoose from 'mongoose'
 
 class App extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class App extends Component {
     this.state = {
       yearWeek: '',
       gridData: '',
+      saveFlag: false,
       columnDefs: [
         {
           headerName: 'Day',
@@ -103,9 +105,12 @@ getData = () =>{
       'Accept': 'application/json'
      }})
     .then(result => result.json())
+    // this.setState({saveFlag: true}
     .then(rowData => this.setState({ rowData:rowData.healthData }))
-
-    .catch((error)=>{
+    .then(saveFlag => this.setState({saveFlag: true}))
+    //  this.setState({saveFlag: true})
+    .catch((error)=>
+    {
       fetch('health.json', {
         headers : { 
           'Content-Type': 'application/json',
@@ -113,8 +118,10 @@ getData = () =>{
          }})
         .then(result => result.json())
         .then(rowData => this.setState({ rowData }))
-
-    })
+        .then(saveFlag => this.setState({saveFlag: false}))
+        // this.setState({saveFlag: false}),
+    }
+    )
 }
 
 saveWeek = (gridData) =>{
@@ -130,14 +137,35 @@ saveWeek = (gridData) =>{
 this.getData()
 }
 
-updateWeek = (gridData) =>{
 
-  console.log(gridData)
+refreshWeek = (gridData) =>{
   fetch('/api/health/' + this.state.yearWeek, {
     headers : {'Content-Type': 'application/json', 'Accept': 'application/json'},
     method: 'PUT',
     body: gridData})
     .then(result => result.json())
+            .then(rowData => this.setState({ rowData }))
+    .catch((error)=>{
+      console.log(error)
+})
+this.getData()
+}
+
+updateWeek = (gridSave) =>{
+
+  console.log()
+  fetch('/api/health/' + this.state.yearWeek, {
+    headers : {'Content-Type': 'application/json', 'Accept': 'application/json'},
+    method: 'PUT',
+    // _id: mongoose.Types.ObjectId(),
+    // author: '',
+    // rating: '',
+    // reviewText: '',
+    body: gridSave})
+    .then(result => result.json())
+
+    // .then(rowData => this.setState({ rowData }))
+
     .catch((error)=>{
       console.log(error)
       this.getData()
@@ -155,6 +183,16 @@ eraseWeek = () =>{
 this.getData()
 }
 
+replaceWeek = (gridData) =>{
+  console.log(this.state.saveFlag)
+  if (!this.state.saveFlag) { this.saveWeek(gridData)
+  }
+  else {
+    this.eraseWeek()
+    this.saveWeek(gridData)
+  }
+}
+
 
   onButtonClick = () => {
     this.gridApi.selectAll();
@@ -167,7 +205,7 @@ this.getData()
     let gridSave = `[{"yearWeek": "${this.state.yearWeek}", "userID": "Bob", "healthData": ${JSON.stringify(selectedData)}}]`;
     console.log(gridSave);
     this.setState({gridData: gridSave})
-    this.saveWeek(gridSave)
+    this.replaceWeek(gridSave)
     const selectedDataString = selectedData
     .map(node => `yearWeek: ${this.state.yearWeek} Day: ${node.day}, bpSystolic: ${node.bpSystolic}, bpDiastolic: ${node.bpDiastolic}, Weight: ${node.weight}, sugarAM: ${node.sugarAM}, sugarPM: ${node.sugarPM}, Sleep: ${node.sleep}, Notes: ${node.notes}`)
       .join(', ');
@@ -185,13 +223,30 @@ this.getData()
 
     this.setState({gridData: gridSave})
 
-    this.updateWeek(gridSave)
+    this.refreshWeek(gridSave)
     const selectedDataString = selectedUpdateData
     .map(node => `yearWeek: ${this.state.yearWeek} Day: ${node.day}, bpSystolic: ${node.bpSystolic}, bpDiastolic: ${node.bpDiastolic}, Weight: ${node.weight}, sugarAM: ${node.sugarAM}, sugarPM: ${node.sugarPM}, Sleep: ${node.sleep}, Notes: ${node.notes}`)
       .join(', ');
     ;
   };
 
+  onReplaceButtonClick = () => {
+    this.gridApi.selectAll();
+    const selectedUpdateNodes = this.gridApi.getSelectedNodes();
+    console.log(selectedUpdateNodes)
+    const selectedUpdateData = selectedUpdateNodes.map(node => node.data);
+    console.log(selectedUpdateData);
+    let gridSave = `[{"yearWeek": "${this.state.yearWeek}", "healthData": ${JSON.stringify(selectedUpdateData)}}]`;
+    console.log(gridSave);
+
+    this.setState({gridData: gridSave})
+
+    this.replaceWeek(gridSave)
+    const selectedDataString = selectedUpdateData
+    .map(node => `yearWeek: ${this.state.yearWeek} Day: ${node.day}, bpSystolic: ${node.bpSystolic}, bpDiastolic: ${node.bpDiastolic}, Weight: ${node.weight}, sugarAM: ${node.sugarAM}, sugarPM: ${node.sugarPM}, Sleep: ${node.sleep}, Notes: ${node.notes}`)
+      .join(', ');
+    ;
+  };
 
 pickerHandler= (date)=> {
   console.log(date)
@@ -200,8 +255,6 @@ pickerHandler= (date)=> {
 
    this.setState({yearWeek: pickedDate},  this.getData)
 }
-
-
 
   render() {
     return (
@@ -214,21 +267,23 @@ pickerHandler= (date)=> {
       >
 <Picker action={this.pickerHandler}></Picker>
 
-    <button type="button" class="btn-info" onClick={this.onButtonClick}>
+    <button type="button" class="btn-info" onClick={this.onReplaceButtonClick}>
         Save Your Week
     </button>
 
-    <button type="button" class="btn-warning" onClick={this.onUpdateButtonClick}>
+    {/* <button type="button" class="btn-warning" onClick={this.onUpdateButtonClick}>
         Update this Week
+    </button> */}
+
+    <button type="button" class="btn-dark" onClick={this.getData}>
+        Restore Saved Info
     </button>
 
-    <button type="button" class="btn-danger" onClick={this.eraseWeek}>
+    <button type="button" class="btn-warning" onClick={this.eraseWeek}>
         Erase this Week 
     </button>
 
-    <button type="button" class="btn-dark" onClick={this.updateWeek}>
-        Clear the Grid
-    </button>
+
 
         <AgGridReact
           onGridReady={params => (this.gridApi = params.api)}

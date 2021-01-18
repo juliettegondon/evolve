@@ -25,7 +25,7 @@ module.exports = {
 console.log(req.params.yearWeek)
 
     db.Health
-      .findOneAndReplace({yearWeek:req.params.yearWeek }, req.body)
+      .findOneAndUpdate({yearWeek:req.params.yearWeek}, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
