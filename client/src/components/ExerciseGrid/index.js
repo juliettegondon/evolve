@@ -71,20 +71,10 @@ class App extends Component {
     rowHeight: 60,
     animateRows: true,
 
-
     };
 
   };
 
-
-
-  onColorChange = (color) => {
-    console.log("Color Change", color)
-  }
-
-  onIntensityChange = (intensity) => {
-    console.log("Intensity Change", intensity)
-  }
 
   onGridReady = params => {
     this.gridApi = params.api;
@@ -138,7 +128,6 @@ clearGrid = () => {
 }
 
 
-
     saveWeek = (gridData) =>{
       fetch('/api/exercise/', {
         headers : {'Content-Type': 'application/json', 'Accept': 'application/json'},
@@ -166,38 +155,36 @@ clearGrid = () => {
     
     replaceWeek = (gridData) =>{
       console.log(this.state.saveFlag)
-      if (!this.state.saveFlag) { this.saveWeek(gridData)
-      }
-      else {
-        this.eraseWeek()
-        this.saveWeek(gridData)
-      }
+        if (!this.state.saveFlag) { this.saveWeek(gridData)
+        }
+        else {
+          this.eraseWeek()
+          this.saveWeek(gridData)
+        }
     }
     
     onReplaceButtonClick = () => {
-      this.gridApi.selectAll();
-      const selectedUpdateNodes = this.gridApi.getSelectedNodes();
+        this.gridApi.selectAll();
+        const selectedUpdateNodes = this.gridApi.getSelectedNodes();
       console.log(selectedUpdateNodes)
-      const selectedUpdateData = selectedUpdateNodes.map(node => node.data);
+        const selectedUpdateData = selectedUpdateNodes.map(node => node.data);
       console.log(selectedUpdateData);
-      let gridSave = `[{"yearWeek": "${this.state.yearWeek}", "userID": "Bob", "exerciseData": ${JSON.stringify(selectedUpdateData)}}]`;
+        let gridSave = `[{"yearWeek": "${this.state.yearWeek}", "userID": "Bob", "exerciseData": ${JSON.stringify(selectedUpdateData)}}]`;
       console.log(gridSave);
-  
-      this.setState({gridData: gridSave})
-  
-      this.replaceWeek(gridSave)
-      const selectedDataString = selectedUpdateData
-      .map(node => `Day: ${node.day}, Activity: ${node.activity}, Duration: ${node.duration}, Intensity: ${node.intensity}, Mood: ${node.mood}, Notes: ${node.notes}`)
-        .join(', ');
-      ;
+        this.setState({gridData: gridSave})
+        this.replaceWeek(gridSave)
+        // eslint-disable-next-line no-unused-vars
+        const selectedDataString = selectedUpdateData
+        .map(node => `Day: ${node.day}, Activity: ${node.activity}, Duration: ${node.duration}, Intensity: ${node.intensity}, Mood: ${node.mood}, Notes: ${node.notes}`)
+          .join(', ');
+        ;
     };
 
   pickerHandler= (date)=> {
     console.log(date)
-    let pickedDate = new Date(date).toJSON().substring(0, 4) + "-" + getWeek(date)
+      let pickedDate = new Date(date).toJSON().substring(0, 4) + "-" + getWeek(date)
     console.log(pickedDate)
-  
-     this.setState({yearWeek: pickedDate},  this.getData)
+      this.setState({yearWeek: pickedDate},  this.getData)
   }
 
   render() {
