@@ -10,14 +10,16 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      yearWeek: '',
+      gridData: '',
+      saveFlag: false,
       columnDefs: [
         {
             headerName: 'Day',
             field: 'day',
             wrapText: true,
             resizable: true,
-            checkboxSelection: true,
+            // checkboxSelection: true,
             width: 130,
 
           },
@@ -71,22 +73,13 @@ class App extends Component {
   }
 
   componentDidMount() {
+
+    let today = new Date();
+    let startYearWeek = today.toJSON().substring(0, 4) + "-" + getWeek(today)
   
+    this.setState({yearWeek: startYearWeek}, this.getData)
 
-      
-
-this.getData()
-
-
-    fetch('exercise.json', {
-      headers : { 
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-       }})
-      .then(result => result.json())
-      .then(rowData => this.setState({ rowData }))
     }
-
 
     getData = () =>{
       fetch('/api/exercise/' + this.state.yearWeek, {
@@ -96,29 +89,73 @@ this.getData()
          }})
         .then(result => result.json())
         .then(rowData => this.setState({ rowData:rowData.exerciseData }))
-    
-        .catch((error)=>{
-          fetch('health.json', {
+        .then(saveFlag => this.setState({saveFlag: true}))
+        .catch((error)=>
+        {
+          fetch('template.json', {
             headers : { 
               'Content-Type': 'application/json',
               'Accept': 'application/json'
              }})
             .then(result => result.json())
             .then(rowData => this.setState({ rowData }))
-    
-        })
+            .then(saveFlag => this.setState({saveFlag: false}))
+        }
+        )
+    }
+
+    saveWeek = (gridData) =>{
+      fetch('/api/exercise/', {
+        headers : {'Content-Type': 'application/json', 'Accept': 'application/json'},
+        method: 'POST',
+        body: gridData})
+        .then(result => result.json())
+        .then(rowData => this.setState({ rowData }))
+        .catch((error)=>{
+          console.log(error)
+    })
+    this.getData()
     }
     
+    eraseWeek = () =>{
+      fetch('/api/exercise/' + this.state.yearWeek, {
+        method: 'DELETE',
+      })
+        .then(result => result.text())
+        .then(result=> console.log("delete result: " + result))
+        .catch((error)=>{
+          console.log(error)
+    })
+    this.getData()
+    }
     
-
-  onButtonClick = () => {
-    const selectedNodes = this.gridApi.getSelectedNodes();
-    const selectedData = selectedNodes.map(node => node.data);
-    const selectedDataString = selectedData
+    replaceWeek = (gridData) =>{
+      console.log(this.state.saveFlag)
+      if (!this.state.saveFlag) { this.saveWeek(gridData)
+      }
+      else {
+        this.eraseWeek()
+        this.saveWeek(gridData)
+      }
+    }
+    
+    onReplaceButtonClick = () => {
+      this.gridApi.selectAll();
+      const selectedUpdateNodes = this.gridApi.getSelectedNodes();
+      console.log(selectedUpdateNodes)
+      const selectedUpdateData = selectedUpdateNodes.map(node => node.data);
+      console.log(selectedUpdateData);
+      let gridSave = `[{"yearWeek": "${this.state.yearWeek}", "userID": "Bob", "exerciseData": ${JSON.stringify(selectedUpdateData)}}]`;
+      console.log(gridSave);
+  
+      this.setState({gridData: gridSave})
+  
+      this.replaceWeek(gridSave)
+      const selectedDataString = selectedUpdateData
       .map(node => `Day: ${node.day}, Activity: ${node.activity}, Duration: ${node.duration}, Intensity: ${node.intensity}, Mood: ${node.mood}, Notes: ${node.notes}`)
-      .join(', ');
-    alert(`Selected Info to Save: ${selectedDataString}`);
-  };
+        .join(', ');
+      ;
+    };
 
   pickerHandler= (date)=> {
     console.log(date)
@@ -142,10 +179,17 @@ this.getData()
 
 <Picker action={this.pickerHandler}></Picker>
 
-    <button type="button" class="btn-info" onClick={this.onButtonClick}>
-    Save Your Week
+<button type="button" class="btn-info" onClick={this.onReplaceButtonClick}>
+        Save Your Week
     </button>
 
+    <button type="button" class="btn-dark" onClick={this.getData}>
+        Restore Saved Info
+    </button>
+
+    <button type="button" class="btn-warning" onClick={this.eraseWeek}>
+        Erase this Week 
+    </button>
 
         <AgGridReact
           onGridReady={params => (this.gridApi = params.api)}

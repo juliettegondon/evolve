@@ -29,6 +29,7 @@ class App extends Component {
           resizable: true,
           editable: true,
           width: 100,
+          type: 'numberColumn' 
         },
         {
           headerName: 'BP Diastolic',
@@ -106,7 +107,7 @@ getData = () =>{
     .then(saveFlag => this.setState({saveFlag: true}))
     .catch((error)=>
     {
-      fetch('health.json', {
+      fetch('template.json', {
         headers : { 
           'Content-Type': 'application/json',
           'Accept': 'application/json'
@@ -152,20 +153,21 @@ replaceWeek = (gridData) =>{
     this.saveWeek(gridData)
   }
 }
+
   onReplaceButtonClick = () => {
     this.gridApi.selectAll();
     const selectedUpdateNodes = this.gridApi.getSelectedNodes();
     console.log(selectedUpdateNodes)
     const selectedUpdateData = selectedUpdateNodes.map(node => node.data);
     console.log(selectedUpdateData);
-    let gridSave = `[{"yearWeek": "${this.state.yearWeek}", "healthData": ${JSON.stringify(selectedUpdateData)}}]`;
+    let gridSave = `[{"yearWeek": "${this.state.yearWeek}", "userID": "Bob", "healthData": ${JSON.stringify(selectedUpdateData)}}]`;
     console.log(gridSave);
 
     this.setState({gridData: gridSave})
 
     this.replaceWeek(gridSave)
     const selectedDataString = selectedUpdateData
-    .map(node => `yearWeek: ${this.state.yearWeek} Day: ${node.day}, bpSystolic: ${node.bpSystolic}, bpDiastolic: ${node.bpDiastolic}, Weight: ${node.weight}, sugarAM: ${node.sugarAM}, sugarPM: ${node.sugarPM}, Sleep: ${node.sleep}, Notes: ${node.notes}`)
+    .map(node => `yearWeek: ${this.state.yearWeek},  Day: ${node.day}, bpSystolic: ${node.bpSystolic}, bpDiastolic: ${node.bpDiastolic}, Weight: ${node.weight}, sugarAM: ${node.sugarAM}, sugarPM: ${node.sugarPM}, Sleep: ${node.sleep}, Notes: ${node.notes}`)
       .join(', ');
     ;
   };

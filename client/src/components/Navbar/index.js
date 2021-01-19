@@ -11,6 +11,16 @@ function Navbar() {
       </Link>
       <div>
         <ul className="navbar-nav">
+
+        <li className="nav-item">
+            <Link
+              to="/Mental"
+              className={window.location.pathname === "/mental" ? "nav-link active" : "nav-link"}
+            >
+              Mind
+            </Link>
+          </li> 
+ 
           <li className="nav-item">
             <Link
               to="/Physical"
@@ -20,17 +30,10 @@ function Navbar() {
                   : "nav-link"
               }
             >
-              Physical
+              Body
             </Link>
           </li>
-          <li className="nav-item">
-            <Link
-              to="/Mental"
-              className={window.location.pathname === "/mental" ? "nav-link active" : "nav-link"}
-            >
-              Mental
-            </Link>
-          </li>
+
           <li className="nav-item">
             <Link
               to="/Resources"

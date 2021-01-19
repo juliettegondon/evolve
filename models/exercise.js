@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const exerciseSchema = new Schema({
   yearWeek: { type: String, required: true },
-  userID: { type: Schema.Types.ObjectId  },
+  userID: { type: String  },
   exerciseData: {type: Schema.Types.Array }
 });
 
