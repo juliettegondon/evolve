@@ -3,8 +3,9 @@ import './style.css';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-import Picker from '../Picker'
-import { getWeek } from 'date-fns'
+import Picker from '../Picker';
+import { getWeek } from 'date-fns';
+import { AllCommunityModules } from 'ag-grid-react'
 
 class App extends Component {
   constructor(props) {
@@ -62,15 +63,34 @@ class App extends Component {
             resizable: true,
             editable: true,
             width: 600,
-          }
+          },
       ],
 
       rowData: [ ],
 
     rowHeight: 60,
     animateRows: true,
+
+
     };
+
+  };
+
+
+
+  onColorChange = (color) => {
+    console.log("Color Change", color)
   }
+
+  onIntensityChange = (intensity) => {
+    console.log("Intensity Change", intensity)
+  }
+
+  onGridReady = params => {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+  };
+  
 
   componentDidMount() {
 
@@ -80,6 +100,7 @@ class App extends Component {
     this.setState({yearWeek: startYearWeek}, this.getData)
 
     }
+  
 
     getData = () =>{
       fetch('/api/exercise/' + this.state.yearWeek, {
@@ -92,7 +113,7 @@ class App extends Component {
         .then(saveFlag => this.setState({saveFlag: true}))
         .catch((error)=>
         {
-          fetch('template.json', {
+          fetch('exerciseTemplate.json', {
             headers : { 
               'Content-Type': 'application/json',
               'Accept': 'application/json'
@@ -106,7 +127,7 @@ class App extends Component {
 
 clearGrid = () => {
 
-  fetch('template.json', {
+  fetch('exerciseTemplate.json', {
     headers : { 
       'Content-Type': 'application/json',
       'Accept': 'application/json'
@@ -212,6 +233,9 @@ clearGrid = () => {
           rowData={this.state.rowData}
           animateRows={this.state.animateRows}
           rowHeight={this.state.rowHeight}
+          frameworkComponents={this.state.frameworkComponents}
+          context={this.state.context}
+          modules={AllCommunityModules}
         ></AgGridReact>
       </div>
     );

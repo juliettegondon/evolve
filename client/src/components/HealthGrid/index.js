@@ -107,7 +107,7 @@ getData = () =>{
     .then(saveFlag => this.setState({saveFlag: true}))
     .catch((error)=>
     {
-      fetch('template.json', {
+      fetch('healthTemplate.json', {
         headers : { 
           'Content-Type': 'application/json',
           'Accept': 'application/json'
