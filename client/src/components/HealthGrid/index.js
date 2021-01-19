@@ -107,7 +107,7 @@ getData = () =>{
     .then(saveFlag => this.setState({saveFlag: true}))
     .catch((error)=>
     {
-      fetch('template.json', {
+      fetch('healthTemplate.json', {
         headers : { 
           'Content-Type': 'application/json',
           'Accept': 'application/json'
@@ -142,6 +142,18 @@ eraseWeek = () =>{
       console.log(error)
 })
 this.getData()
+}
+
+clearGrid = () => {
+
+  fetch('template.json', {
+    headers : { 
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+     }})
+    .then(result => result.json())
+    .then(rowData => this.setState({ rowData }))
+    .then(saveFlag => this.setState({saveFlag: false}))
 }
 
 replaceWeek = (gridData) =>{
@@ -195,8 +207,8 @@ pickerHandler= (date)=> {
         Save Your Week
     </button>
 
-    <button type="button" class="btn-dark" onClick={this.getData}>
-        Restore Saved Info
+    <button type="button" class="btn-dark" onClick={this.clearGrid}>
+    Clear the Grid
     </button>
 
     <button type="button" class="btn-warning" onClick={this.eraseWeek}>

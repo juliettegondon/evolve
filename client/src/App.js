@@ -10,7 +10,8 @@ import Wrapper from "./components/Wrapper";
 import Podcast from "./pages/Podcast";
 import VideoLibrary from "./pages/VideoLibrary";
 import Health from "./pages/Health";
-import Exercise from "./pages/Exercise"
+import Exercise from "./pages/Exercise";
+import ContactUs from "./pages/ContactUs"
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/videolibrary" component={VideoLibrary} />
           <Route exact path="/health" component={Health} />
           <Route exact path="/exercise" component={Exercise} />
+          <Route exact path="/contactus" component={ContactUs} />
         </Wrapper>
         <Footer />
       </div>
