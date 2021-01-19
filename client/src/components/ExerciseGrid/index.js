@@ -104,6 +104,20 @@ class App extends Component {
         )
     }
 
+clearGrid = () => {
+
+  fetch('template.json', {
+    headers : { 
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+     }})
+    .then(result => result.json())
+    .then(rowData => this.setState({ rowData }))
+    .then(saveFlag => this.setState({saveFlag: false}))
+}
+
+
+
     saveWeek = (gridData) =>{
       fetch('/api/exercise/', {
         headers : {'Content-Type': 'application/json', 'Accept': 'application/json'},
@@ -183,8 +197,8 @@ class App extends Component {
         Save Your Week
     </button>
 
-    <button type="button" class="btn-dark" onClick={this.getData}>
-        Restore Saved Info
+    <button type="button" class="btn-dark" onClick={this.clearGrid}>
+        Clear the Grid
     </button>
 
     <button type="button" class="btn-warning" onClick={this.eraseWeek}>

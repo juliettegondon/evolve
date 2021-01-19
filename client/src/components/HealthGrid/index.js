@@ -144,6 +144,18 @@ eraseWeek = () =>{
 this.getData()
 }
 
+clearGrid = () => {
+
+  fetch('template.json', {
+    headers : { 
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+     }})
+    .then(result => result.json())
+    .then(rowData => this.setState({ rowData }))
+    .then(saveFlag => this.setState({saveFlag: false}))
+}
+
 replaceWeek = (gridData) =>{
   console.log(this.state.saveFlag)
   if (!this.state.saveFlag) { this.saveWeek(gridData)
@@ -195,8 +207,8 @@ pickerHandler= (date)=> {
         Save Your Week
     </button>
 
-    <button type="button" class="btn-dark" onClick={this.getData}>
-        Restore Saved Info
+    <button type="button" class="btn-dark" onClick={this.clearGrid}>
+    Clear the Grid
     </button>
 
     <button type="button" class="btn-warning" onClick={this.eraseWeek}>
