@@ -5,8 +5,6 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import Picker from '../Picker'
 import { getWeek } from 'date-fns'
-// import API from '../../utils/API';
-import mongoose from 'mongoose'
 
 class App extends Component {
   constructor(props) {
@@ -21,7 +19,6 @@ class App extends Component {
           field: 'day',
           wrapText: true,
           resizable: true,
-          // checkboxSelection: true,
           width: 130,
 
           },
@@ -32,6 +29,7 @@ class App extends Component {
           resizable: true,
           editable: true,
           width: 100,
+          type: 'numberColumn' 
         },
         {
           headerName: 'BP Diastolic',
@@ -105,13 +103,11 @@ getData = () =>{
       'Accept': 'application/json'
      }})
     .then(result => result.json())
-    // this.setState({saveFlag: true}
     .then(rowData => this.setState({ rowData:rowData.healthData }))
     .then(saveFlag => this.setState({saveFlag: true}))
-    //  this.setState({saveFlag: true})
     .catch((error)=>
     {
-      fetch('health.json', {
+      fetch('template.json', {
         headers : { 
           'Content-Type': 'application/json',
           'Accept': 'application/json'
@@ -119,7 +115,6 @@ getData = () =>{
         .then(result => result.json())
         .then(rowData => this.setState({ rowData }))
         .then(saveFlag => this.setState({saveFlag: false}))
-        // this.setState({saveFlag: false}),
     }
     )
 }
@@ -130,46 +125,12 @@ saveWeek = (gridData) =>{
     method: 'POST',
     body: gridData})
     .then(result => result.json())
-            .then(rowData => this.setState({ rowData }))
+    .then(rowData => this.setState({ rowData }))
     .catch((error)=>{
       console.log(error)
 })
 this.getData()
 }
-
-
-refreshWeek = (gridData) =>{
-  fetch('/api/health/' + this.state.yearWeek, {
-    headers : {'Content-Type': 'application/json', 'Accept': 'application/json'},
-    method: 'PUT',
-    body: gridData})
-    .then(result => result.json())
-            .then(rowData => this.setState({ rowData }))
-    .catch((error)=>{
-      console.log(error)
-})
-this.getData()
-}
-
-updateWeek = (gridSave) =>{
-
-  console.log()
-  fetch('/api/health/' + this.state.yearWeek, {
-    headers : {'Content-Type': 'application/json', 'Accept': 'application/json'},
-    method: 'PUT',
-    // _id: mongoose.Types.ObjectId(),
-    // author: '',
-    // rating: '',
-    // reviewText: '',
-    body: gridSave})
-    .then(result => result.json())
-
-    // .then(rowData => this.setState({ rowData }))
-
-    .catch((error)=>{
-      console.log(error)
-      this.getData()
-})}
 
 eraseWeek = () =>{
   fetch('/api/health/' + this.state.yearWeek, {
@@ -193,57 +154,20 @@ replaceWeek = (gridData) =>{
   }
 }
 
-
-  onButtonClick = () => {
-    this.gridApi.selectAll();
-    const selectedNodes = this.gridApi.getSelectedNodes();
-    console.log(selectedNodes)
-    const selectedData = selectedNodes.map(node => node.data);
-    console.log(selectedData);
-      localStorage.setItem('data', JSON.stringify(selectedData))
-
-    let gridSave = `[{"yearWeek": "${this.state.yearWeek}", "userID": "Bob", "healthData": ${JSON.stringify(selectedData)}}]`;
-    console.log(gridSave);
-    this.setState({gridData: gridSave})
-    this.replaceWeek(gridSave)
-    const selectedDataString = selectedData
-    .map(node => `yearWeek: ${this.state.yearWeek} Day: ${node.day}, bpSystolic: ${node.bpSystolic}, bpDiastolic: ${node.bpDiastolic}, Weight: ${node.weight}, sugarAM: ${node.sugarAM}, sugarPM: ${node.sugarPM}, Sleep: ${node.sleep}, Notes: ${node.notes}`)
-      .join(', ');
-    ;
-  };
-
-    onUpdateButtonClick = () => {
-    this.gridApi.selectAll();
-    const selectedUpdateNodes = this.gridApi.getSelectedNodes();
-    console.log(selectedUpdateNodes)
-    const selectedUpdateData = selectedUpdateNodes.map(node => node.data);
-    console.log(selectedUpdateData);
-    let gridSave = `[{"yearWeek": "${this.state.yearWeek}", "healthData": ${JSON.stringify(selectedUpdateData)}}]`;
-    console.log(gridSave);
-
-    this.setState({gridData: gridSave})
-
-    this.refreshWeek(gridSave)
-    const selectedDataString = selectedUpdateData
-    .map(node => `yearWeek: ${this.state.yearWeek} Day: ${node.day}, bpSystolic: ${node.bpSystolic}, bpDiastolic: ${node.bpDiastolic}, Weight: ${node.weight}, sugarAM: ${node.sugarAM}, sugarPM: ${node.sugarPM}, Sleep: ${node.sleep}, Notes: ${node.notes}`)
-      .join(', ');
-    ;
-  };
-
   onReplaceButtonClick = () => {
     this.gridApi.selectAll();
     const selectedUpdateNodes = this.gridApi.getSelectedNodes();
     console.log(selectedUpdateNodes)
     const selectedUpdateData = selectedUpdateNodes.map(node => node.data);
     console.log(selectedUpdateData);
-    let gridSave = `[{"yearWeek": "${this.state.yearWeek}", "healthData": ${JSON.stringify(selectedUpdateData)}}]`;
+    let gridSave = `[{"yearWeek": "${this.state.yearWeek}", "userID": "Bob", "healthData": ${JSON.stringify(selectedUpdateData)}}]`;
     console.log(gridSave);
 
     this.setState({gridData: gridSave})
 
     this.replaceWeek(gridSave)
     const selectedDataString = selectedUpdateData
-    .map(node => `yearWeek: ${this.state.yearWeek} Day: ${node.day}, bpSystolic: ${node.bpSystolic}, bpDiastolic: ${node.bpDiastolic}, Weight: ${node.weight}, sugarAM: ${node.sugarAM}, sugarPM: ${node.sugarPM}, Sleep: ${node.sleep}, Notes: ${node.notes}`)
+    .map(node => `yearWeek: ${this.state.yearWeek},  Day: ${node.day}, bpSystolic: ${node.bpSystolic}, bpDiastolic: ${node.bpDiastolic}, Weight: ${node.weight}, sugarAM: ${node.sugarAM}, sugarPM: ${node.sugarPM}, Sleep: ${node.sleep}, Notes: ${node.notes}`)
       .join(', ');
     ;
   };
@@ -270,10 +194,6 @@ pickerHandler= (date)=> {
     <button type="button" class="btn-info" onClick={this.onReplaceButtonClick}>
         Save Your Week
     </button>
-
-    {/* <button type="button" class="btn-warning" onClick={this.onUpdateButtonClick}>
-        Update this Week
-    </button> */}
 
     <button type="button" class="btn-dark" onClick={this.getData}>
         Restore Saved Info
