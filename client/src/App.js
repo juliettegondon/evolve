@@ -11,7 +11,9 @@ import Podcast from "./pages/Podcast";
 import VideoLibrary from "./pages/VideoLibrary";
 import Health from "./pages/Health";
 import Exercise from "./pages/Exercise";
-import ContactUs from "./pages/ContactUs"
+import ContactUs from "./pages/ContactUs";
+//import SignIn from "./components/SignIn";
+//import SignUp from "./components/SignUp"
 
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
           <Route exact path="/health" component={Health} />
           <Route exact path="/exercise" component={Exercise} />
           <Route exact path="/contactus" component={ContactUs} />
+          {/* <Route exact path="/SignIn" component={SignIn} /> */}
+          {/* <Route exact path="/SignUp" component={SignUp} /> */}
         </Wrapper>
         <Footer />
       </div>
