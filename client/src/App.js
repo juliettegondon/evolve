@@ -12,8 +12,7 @@ import VideoLibrary from "./pages/VideoLibrary";
 import Health from "./pages/Health";
 import Exercise from "./pages/Exercise";
 import ContactUs from "./pages/ContactUs";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+
 
 
 function App() {
@@ -32,8 +31,7 @@ function App() {
           <Route exact path="/health" component={Health} />
           <Route exact path="/exercise" component={Exercise} />
           <Route exact path="/contactus" component={ContactUs} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={Signup} />
+
         </Wrapper>
         <Footer />
       </div>
