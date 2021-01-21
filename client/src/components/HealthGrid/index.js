@@ -146,7 +146,7 @@ this.getData()
 
 clearGrid = () => {
 
-  fetch('template.json', {
+  fetch('healthTemplate.json', {
     headers : { 
       'Content-Type': 'application/json',
       'Accept': 'application/json'
@@ -203,15 +203,15 @@ pickerHandler= (date)=> {
       >
 <Picker action={this.pickerHandler}></Picker>
 
-    <button type="button" class="btn-info" onClick={this.onReplaceButtonClick}>
+    <button type="button" className="btn-info" onClick={this.onReplaceButtonClick}>
         Save Your Week
     </button>
 
-    <button type="button" class="btn-dark" onClick={this.clearGrid}>
+    <button type="button" className="btn-dark ml-2" onClick={this.clearGrid}>
     Clear the Grid
     </button>
 
-    <button type="button" class="btn-warning" onClick={this.eraseWeek}>
+    <button type="button" className="btn-warning ml-2" onClick={this.eraseWeek}>
         Erase this Week 
     </button>
 

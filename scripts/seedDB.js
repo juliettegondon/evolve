@@ -153,11 +153,32 @@ const exerciseSeed = [
 
 ];
 
+
+const userSeed = [
+
+  {  name: 'John Smith',
+     email: 'john@company.com',
+     displayname: 'John',
+     password: '123456'
+  },
+  {  name: 'Heather Jones',
+  email: 'Heather@zzz.com',
+  displayname: 'Heather',
+  password: '123456'
+  },
+  {  "name": "Marinda Carafrae",
+     "email": "rinny@company.com",
+     "displayName": "Rinny",
+     "password": "123456"
+  }
+];
+
+
 db.Health
   .remove({})
   .then(() => db.Health.collection.insertMany(healthSeed))
   .then(data => {
-    console.log(data.result.n + " records inserted!");
+    console.log(data.result.n + " Health records inserted!");
     process.exit(0);
   })
   .catch(err => {
@@ -169,10 +190,23 @@ db.Health
   .remove({})
   .then(() => db.Exercise.collection.insertMany(exerciseSeed))
   .then(data => {
-    console.log(data.result.n + " records inserted!");
+    console.log(data.result.n + " Exercise records inserted!");
     process.exit(0);
   })
   .catch(err => {
     console.error(err);
     process.exit(1);
   });
+
+  db.User
+  .remove({})
+  .then(() => db.User.collection.insertMany(userSeed))
+  .then(data => {
+    console.log(data.result.n + " User records inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
+
