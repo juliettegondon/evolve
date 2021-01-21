@@ -46,6 +46,9 @@ axios.post('/api/user',{
         if (response.data) {
             console.log('successful signup')
             alert('Welcome to Evolve !')
+            sessionStorage.setItem('loginStatus', this.state.loggedIn)
+            sessionStorage.setItem('user', response.data.displayName)
+            sessionStorage.setItem('email', response.data.email)
             this.props.history.push('/landing')
             } 
         else {

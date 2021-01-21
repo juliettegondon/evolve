@@ -176,7 +176,9 @@ clearGrid = () => {
       console.log(selectedUpdateNodes)
         const selectedUpdateData = selectedUpdateNodes.map(node => node.data);
       console.log(selectedUpdateData);
-        let gridSave = `[{"yearWeek": "${this.state.yearWeek}", "userID": "Bob", "exerciseData": ${JSON.stringify(selectedUpdateData)}}]`;
+      let email = sessionStorage.email;
+      console.log('email: ' + email)
+        let gridSave = `[{"yearWeek": "${this.state.yearWeek}", "key": "${email + this.state.yearWeek}", "userID": "Bob", "exerciseData": ${JSON.stringify(selectedUpdateData)}}]`;
       console.log(gridSave);
         this.setState({gridData: gridSave})
         this.replaceWeek(gridSave)
