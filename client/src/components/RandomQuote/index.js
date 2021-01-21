@@ -8,16 +8,19 @@ import { Card } from "react-bootstrap";
 
 class RandomQuote extends Component {
 	state = {
-	  quote: [],
+	  quote: "",
+	  author: "",
 	}
   
 	apiReq = () => {
 	  API.getQuote().then((response) => {
 		  const randNum = Math.floor(Math.random() * response.data.length)
 		  const quote = response.data[randNum].text
+		  const author = response.data[randNum].author
 		  console.log(quote)
 		  this.setState({
-			  quote: quote
+			  quote: quote,
+			  author: author
 		  });
 		  
 	  });
@@ -43,7 +46,7 @@ class RandomQuote extends Component {
 				</Card.Header>
 				<Accordion.Collapse eventKey="0">
 					<Card.Body className="accordion text-center">
-					"{this.state.quote}"
+					"{this.state.quote}" - {this.state.author}
 					</Card.Body>
 				</Accordion.Collapse>
 			</Card>

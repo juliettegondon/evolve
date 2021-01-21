@@ -205,11 +205,11 @@ clearGrid = () => {
         Save Your Week
     </button>
 
-    <button type="button" class="btn-dark" onClick={this.clearGrid}>
+    <button type="button" class="btn-dark ml-2" onClick={this.clearGrid}>
         Clear the Grid
     </button>
 
-    <button type="button" class="btn-warning" onClick={this.eraseWeek}>
+    <button type="button" class="btn-warning ml-2" onClick={this.eraseWeek}>
         Erase this Week 
     </button>
 

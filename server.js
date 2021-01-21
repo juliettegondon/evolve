@@ -16,9 +16,19 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/evolve");
+mongoose.connect(
+  (process.env.MONGODB_URI || "mongodb://localhost/evolve"),
+    {useNewUrlParser: true,
+    useUnifiedTopology: true,
+    },
+    (err) => {
+      if (err) throw err;
+      console.log("MongoDB connection established");
+    }
+);
 
 // Start the API server
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
+
