@@ -5,6 +5,7 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import Picker from '../Picker'
 import { getWeek } from 'date-fns'
+import { withRouter} from 'react-router-dom'
 
 class App extends Component {
   constructor(props) {
@@ -88,6 +89,12 @@ class App extends Component {
   }
 
 componentDidMount() {
+
+  if (!sessionStorage.loginStatus){
+
+    alert("please log in !")
+    this.props.history.push('/login')
+  }
   
     let today = new Date();
     let startYearWeek = today.toJSON().substring(0, 4) + "-" + getWeek(today)
@@ -230,4 +237,4 @@ pickerHandler= (date)=> {
   }
 }
 
-export default App;
+export default withRouter(App);

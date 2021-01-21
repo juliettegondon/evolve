@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import logo from './evolve_logo.png'; // with import
 import { withRouter} from 'react-router-dom'
+import Hero from '../Hero'
 //import { withRouter, Link } from 'react-router-dom'
 //need to confirm api/auth route
 //import { signIn } from '../../api/auth'
@@ -27,8 +28,9 @@ class LoginForm extends Component {
     sendFormData = event => {
         event.preventDefault();
         console.log('handleSubmit')
-        console.log(this.state.email);
-        console.log(this.state.password);
+        console.log('email: ' + this.state.email);
+        console.log('password: ' +this.state.password);
+        console.log('logged in status: ' + this.state.loggedIn)
         this.setState({
             redirectTo: '/'
         })
@@ -37,11 +39,15 @@ axios.get('/api/user/'+ this.state.email)
     .then (response => {
         console.log(response)
         if (response.data) {
+            this.setState({loggedIn: true})
+            sessionStorage.setItem('loginStatus', this.state.loggedIn)
             console.log('successful signup')
+            console.log('logged in status: ' + this.state.loggedIn)
             alert('Welcome to Evolve !')
             this.props.history.push('/landing')
             } 
         else {
+            alert('Sign-in unsuccessful, please try again or Sign-up if new to E-Volve')
             console.log('Sign-up error')
         }
     })
@@ -106,13 +112,25 @@ axios.get('/api/user/'+ this.state.email)
 
                             </form>
 
+
                         </div>
+                        <p>
+              Welcome to E-Volve. Live life with less stress, while actively working 
+              on your personal wellness evolution. Stronger. Healthier. More resilient. Happier.
+              Manage it all, right here. 
+              Whether you want to get into better physical shape, 
+              become more mindful and manage feelings and thoughts, or even keep track of your health data and informatics, 
+              let E-Volve be your private online journal and resource library.
+            </p>
                     </div>
                     <div className="col-md-4 pt-4">
+
                         {/* <Contacts /> */}
                     </div>
+
                 </div>
             </div>
+            
         );
     }
 };

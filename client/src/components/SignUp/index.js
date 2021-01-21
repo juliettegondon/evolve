@@ -49,10 +49,12 @@ axios.post('/api/user',{
             this.props.history.push('/landing')
             } 
         else {
+            alert('Passwords need to be at least 5 characters, please try again')
             console.log('Sign-up error')
         }
     })
     .catch(error => {
+        alert('Passwords need to be at least 5 characters, please try again')
         console.log('Sign up server error: ')
         console.log(error)
     })

@@ -35,7 +35,7 @@ class RandomQuote extends Component {
 				<Card.Header className="accordion text-center">
 					<Accordion.Toggle as={Button} variant="link" eventKey="0">
 						<button
-							class="d-flex align-items-center justify-content-between btn btn-link collapsed"
+							className="d-flex align-items-center justify-content-between btn btn-link collapsed"
 							data-toggle="collapse"
 							data-target="#collapseOne"
 							aria-expanded="false"
@@ -46,7 +46,7 @@ class RandomQuote extends Component {
 				</Card.Header>
 				<Accordion.Collapse eventKey="0">
 					<Card.Body className="accordion text-center">
-					"{this.state.quote}" - {this.state.author}
+					"{this.state.quote}" <br></br> - {this.state.author}
 					</Card.Body>
 				</Accordion.Collapse>
 			</Card>

@@ -3,6 +3,7 @@ import React, { Component} from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+import { withRouter} from 'react-router-dom'
 
 class App extends Component {
   constructor(props) {
@@ -67,6 +68,11 @@ class App extends Component {
   }
 
 componentDidMount() {
+
+  if (!sessionStorage.loginStatus){
+    alert("please log in !")
+    this.props.history.push('/login')
+  }
   
     fetch('videos.json', {
       headers : { 
@@ -114,4 +120,4 @@ componentDidMount() {
   }
 }
 
-export default App;
+export default withRouter(App);
