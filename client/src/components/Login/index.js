@@ -20,6 +20,10 @@ class LoginForm extends Component {
         });
     };
 
+    gotoSignUp = () => {
+        this.props.history.push('/signup')
+    }
+    
     sendFormData = event => {
         event.preventDefault();
         console.log('handleSubmit')
