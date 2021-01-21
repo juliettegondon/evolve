@@ -12,6 +12,8 @@ import VideoLibrary from "./pages/VideoLibrary";
 import Health from "./pages/Health";
 import Exercise from "./pages/Exercise";
 import ContactUs from "./pages/ContactUs";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 
 
@@ -21,7 +23,7 @@ function App() {
       <div>
         <Navbar />
         <Wrapper>
-          <Route exact path="/" component={Landing} />
+          <Route exact path="/" component={Login} />
           <Route exact path="/landing" component={Landing} />
           <Route exact path="/physical" component={Physical} />
           <Route exact path="/mental" component={Mental} />
@@ -31,6 +33,8 @@ function App() {
           <Route exact path="/health" component={Health} />
           <Route exact path="/exercise" component={Exercise} />
           <Route exact path="/contactus" component={ContactUs} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
 
         </Wrapper>
         <Footer />

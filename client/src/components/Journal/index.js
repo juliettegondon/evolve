@@ -10,6 +10,12 @@ import Slider from "../Slider";
 
 
 function Journal(props) {
+
+  // if (!sessionStorage.loginStatus){
+  //   alert("please log in !")
+  //   this.props.history.push('/login')
+  // }
+
   return (
     <div>
         <Col size="md-12">
