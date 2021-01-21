@@ -64,7 +64,7 @@ axios.post('/api/user',{
         return (
             <div>
                 <div className="row pt-4" >
-                    <div className="col-md-8 pt-4 d-flex flex-wrap justify-content-around">
+                    <div className="col-md-9 pt-4 d-flex flex-wrap justify-content-around">
     <img src={logo} width="175" height="175" alt={logo} />
                     <div className="jumbotron">
                         <h1 className="display-4"><b>Sign Up</b></h1>

@@ -73,7 +73,7 @@ componentDidMount() {
     alert("please log in !")
     this.props.history.push('/login')
   }
-  
+   
     fetch('videos.json', {
       headers : { 
         'Content-Type': 'application/json',

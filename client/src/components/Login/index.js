@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import logo from './evolve_logo.png'; // with import
 import { withRouter} from 'react-router-dom'
-import Hero from '../Hero'
+// import Hero from '../Hero'
 //import { withRouter, Link } from 'react-router-dom'
 //need to confirm api/auth route
 //import { signIn } from '../../api/auth'
@@ -30,7 +30,9 @@ class LoginForm extends Component {
         console.log('handleSubmit')
         console.log('email: ' + this.state.email);
         console.log('password: ' +this.state.password);
-        console.log('logged in status: ' + this.state.loggedIn)
+        console.log('logged in status: ' + this.state.loggedIn);
+        let key = this.state.email + this.state.password;
+        console.log('Key: ' + key)
         this.setState({
             redirectTo: '/'
         })
@@ -40,7 +42,9 @@ axios.get('/api/user/'+ this.state.email)
         console.log(response)
         if (response.data) {
             this.setState({loggedIn: true})
+            console.log('Display name: ' + response.data.displayName)
             sessionStorage.setItem('loginStatus', this.state.loggedIn)
+            sessionStorage.setItem('user', response.data.displayName)
             console.log('successful signup')
             console.log('logged in status: ' + this.state.loggedIn)
             alert('Welcome to Evolve !')
@@ -62,8 +66,8 @@ axios.get('/api/user/'+ this.state.email)
             <div>
                 <div className="row pt-4" >
                
-                    <div className="col-md-8 pt-4 d-flex flex-wrap justify-content-around">
-    <img src={logo} width="175" height="175" alt={logo} />     
+                    <div className="col-md-9 pt-4 d-flex flex-wrap justify-content-around">
+    <img src={logo} width="150" height="150" alt={logo} />     
                         <div className="jumbotron">
                             <h1 className="display-4"><b>Login</b></h1>
                             <p className="lead">Enter username/password below to login.</p>

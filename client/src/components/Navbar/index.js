@@ -6,7 +6,7 @@ import "./style.css";
 function Navbar() {
   return (
     <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-      <Link className="navbar-brand" to="/">
+      <Link className="navbar-brand" to="/landing">
         E-VOLVE
       </Link>
       <div>
