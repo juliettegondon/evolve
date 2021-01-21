@@ -7,13 +7,13 @@ import RandomQuote from "../components/RandomQuote"
 
 let user = ' user'
 
-if (sessionStorage.user){user = ' ' + sessionStorage.user}
-
 function Landing () {
 
-
+  if (sessionStorage.user){user = ' ' + sessionStorage.user}
 
   return (
+
+    
 
     <div>
 
