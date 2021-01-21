@@ -25,48 +25,27 @@ class LoginForm extends Component {
         console.log('handleSubmit')
         console.log(this.state.email);
         console.log(this.state.password);
-        this._login(this.state.username, this.state.password)
         this.setState({
             redirectTo: '/'
         })
-    };
-    
-gotoSignUp = () => {
-    this.props.history.push('/signup')
-}
 
-    componentDidMount() {
-        axios.get('/auth/user').then(response => {
-            console.log(response.data)
-            if (!!response.data.user) {
-                console.log('user exists')
-                this.setState({
-                    loggedIn: true,
-                    user: response.data.user
-                })
-            } else {
-                this.setState({
-                    loggedIn: false,
-                    user: null
-                })
-            }
-        })
-    };
-
-    _logout(event) {
-        event.preventDefault()
-        console.log('logged out!')
-        axios.post('/api/logout').then(response => {
-            console.log(response.data)
-            if (response.status === 200) {
-                this.setState({
-                    loggedIn: false,
-                    user: null
-                })
-            }
-        })
-    };
-
+axios.get('/api/user/'+ this.state.email)
+    .then (response => {
+        console.log(response)
+        if (response.data) {
+            console.log('successful signup')
+            alert('Welcome to Evolve !')
+            this.props.history.push('/landing')
+            } 
+        else {
+            console.log('Sign-up error')
+        }
+    })
+    .catch(error => {
+        console.log('Sign up server error: ')
+        console.log(error)
+    })
+        }
 
     render() {
         return (
@@ -83,15 +62,15 @@ gotoSignUp = () => {
 
                                 <div className="form-group">
 
-                                    <label htmlFor="username">Username</label>
+                                    <label htmlFor="username">email</label>
 
                                     <input type="text"
                                         className="form-control"
-                                        name="username"
-                                        value={this.state.username}
+                                        name="email"
+                                        value={this.state.email}
                                         onChange={this.handleInputChange}
-                                        id="username"
-                                        placeholder="Username">
+                                        id="email"
+                                        placeholder="email">
 
                                     </input>
                                 </div>
@@ -116,7 +95,7 @@ gotoSignUp = () => {
                                         onClick={this.sendFormData}
                                 >Submit</button>
 
-                                <button type="submit"
+                                <button type="signup"
                                     className="btn btn-primary myButton ml-3"
                                         onClick={this.gotoSignUp}
                                 >Sign Up</button>
@@ -132,10 +111,6 @@ gotoSignUp = () => {
             </div>
         );
     }
-
-
-
-
 };
 
 export default withRouter(LoginForm);
