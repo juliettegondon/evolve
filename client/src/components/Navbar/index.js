@@ -54,10 +54,10 @@ function NavBar() {
 			</div>
       <div>
       <NavDropdown title="My Account" className="basic-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">View Account</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Settings</NavDropdown.Item>
+        <NavDropdown.Item href="">View Account</NavDropdown.Item>
+        <NavDropdown.Item href="#">Settings</NavDropdown.Item>
         <NavDropdown.Divider />
-        <NavDropdown.Item href="#action/3.4">Log Out</NavDropdown.Item>
+        <NavDropdown.Item href="#">Log Out</NavDropdown.Item>
       </NavDropdown>
       </div>
 		</nav>
