@@ -1,49 +1,38 @@
 {
-  "name": "evolve",
-  "version": "0.1.0",
-  "private": true,
+  "name": "mern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "seed": "node scripts/seedDB.js",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.7"
+  },
   "dependencies": {
-    "@material-ui/core": "^4.11.2",
-    "@testing-library/jest-dom": "^5.11.8",
-    "@testing-library/react": "^11.2.2",
-    "@testing-library/user-event": "^12.6.0",
     "axios": "^0.21.1",
-    "bootstrap": "^4.5.3",
+    "express": "^4.16.3",
+    "if-env": "^1.0.4",
+    "is-empty": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.10",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
     "react": "^17.0.1",
-    "react-bootstrap": "^1.4.0",
+    "react-dnd": "^11.1.3",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.1",
-    "react-with-modal": "^0.2.3",
-    "web-vitals": "^0.2.4",
-    "@ag-grid-community/all-modules": "^25.0.0",
-    "@ag-grid-community/core": "^25.0.0",
-    "@ag-grid-community/react": "^25.0.0",
-    "ag-grid-community": "^25.0.0",
-    "ag-grid-react": "^25.0.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "react-scripts": "^4.0.1",
+    "validator": "^13.5.2"
   }
 }
