@@ -206,6 +206,7 @@ pickerHandler= (date)=> {
    this.setState({yearWeek: pickedDate},  this.getData)
 }
 
+
   render() {
     return (
       <div
@@ -246,6 +247,13 @@ pickerHandler= (date)=> {
           animateRows={this.state.animateRows}
           rowHeight={this.state.rowHeight}
         ></AgGridReact>
+        
+        <ButtonGroup size="sm" className="mb-2">
+        <Button className="ex btn-circle" /* onClick={this.onExportButtonClick} */>
+								Export to MyChart     
+        </Button>
+        </ButtonGroup>
+      
       </div>
     );
   }
