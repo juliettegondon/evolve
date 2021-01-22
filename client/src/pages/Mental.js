@@ -20,7 +20,7 @@ function Mental() {
         <Row>
           <Col size="md-12">
             <p>
-            As web developers, we understand that work and life tends to get the best of you. 
+            As web developers, we understand that the stresses of work and life tend to get the best of you. 
             It's time to stop pushing your mental health to the side, because let's face it - this is something you can start taking care of NOW.
            By implementing daily mindful activities and journaling, you can be mindful at work and in your personal life.
             </p>
