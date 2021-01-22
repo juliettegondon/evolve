@@ -7,12 +7,17 @@ import { Button } from "react-bootstrap";
 import { ButtonGroup } from "react-bootstrap";
 import Col from "../Col";
 import Slider from "../Slider";
+import { useHistory } from "react-router-dom";
 
 function Journal(props) {
-	// if (!sessionStorage.loginStatus){
-	//   alert("please log in !")
-	//   this.props.history.push('/login')
-	// }
+
+	let history = useHistory();
+
+	function checkLogin() {
+	  if(!sessionStorage.loggedIn){
+		  alert('Please log in!')
+	  history.push("/login");
+	}}
 
 	return (
 		<div>
@@ -62,6 +67,8 @@ function Journal(props) {
 						</InputGroup>
 
 						<Slider></Slider>
+
+						{checkLogin()}
 
 						<button type="submit" className="btn btn-primary myButton">
 							Save Reflection
