@@ -4,7 +4,7 @@ import Landing from "./pages/Landing";
 import Physical from "./pages/Physical";
 import Mental from "./pages/Mental";
 import Resources from "./pages/Resources";
-import Navbar from "./components/Navbar";
+import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper";
 import Podcast from "./pages/Podcast";
@@ -21,7 +21,7 @@ function App() {
   return (
     <Router>
       <div>
-        <Navbar />
+        <NavBar />
         <Wrapper>
           <Route exact path="/" component={Login} />
           <Route exact path="/landing" component={Landing} />
