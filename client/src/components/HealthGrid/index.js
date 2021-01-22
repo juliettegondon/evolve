@@ -6,6 +6,9 @@ import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import Picker from '../Picker'
 import { getWeek } from 'date-fns'
 import { withRouter} from 'react-router-dom'
+import { Button } from 'react-bootstrap';
+import { ButtonGroup } from 'react-bootstrap';
+import Col from "../Col";
 
 class App extends Component {
   constructor(props) {
@@ -212,19 +215,26 @@ pickerHandler= (date)=> {
           width: '1200px'
         }}
       >
-<Picker action={this.pickerHandler}></Picker>
 
-    <button type="button" className="btn-info" onClick={this.onReplaceButtonClick}>
-        Save Your Week
-    </button>
-
-    <button type="button" className="btn-dark ml-2" onClick={this.clearGrid}>
-    Clear the Grid
-    </button>
-
-    <button type="button" className="btn-warning ml-2" onClick={this.eraseWeek}>
-        Erase this Week 
-    </button>
+<div>
+					<Col size="md-4">
+						<Picker action={this.pickerHandler}></Picker>
+						<ButtonGroup size="sm" className="mb-2">
+							<Button
+								className="ex btn-circle"
+								onClick={this.onReplaceButtonClick}
+							>
+								Save Week
+							</Button>
+							<Button className="ex btn-circle" onClick={this.clearGrid}>
+								Clear Grid
+							</Button>
+							<Button className="ex btn-circle" onClick={this.eraseWeek}>
+								Delete Week
+							</Button>
+						</ButtonGroup>
+					</Col>
+				</div>
 
 
 
