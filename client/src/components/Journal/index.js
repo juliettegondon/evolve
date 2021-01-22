@@ -32,12 +32,12 @@ function Journal(props) {
   </InputGroup>
 
   <ButtonGroup size="lg" className="mb-2">
-    <Button className="mood btn-circle">😌</Button>
-    <Button className="mood btn-circle">😄</Button>
-    <Button className="mood btn-circle">🥰</Button>
-    <Button className="mood btn-circle">😭</Button>
-    <Button className="mood btn-circle">😡</Button>
-    <Button className="mood btn-circle">😴</Button>
+    <Button className="mood btn-circle" value="1">😌</Button>
+    <Button className="mood btn-circle" value="2">😄</Button>
+    <Button className="mood btn-circle" value="3">🥰</Button>
+    <Button className="mood btn-circle" value="4">😭</Button>
+    <Button className="mood btn-circle" value="5">😡</Button>
+    <Button className="mood btn-circle" value="6">😴</Button>
   </ButtonGroup>
 
   <InputGroup className="mb-2">
