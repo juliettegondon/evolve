@@ -95,7 +95,7 @@ componentDidMount() {
     alert("please log in !")
     this.props.history.push('/login')
   }
-  
+    let emailx = sessionStorage.user;
     let today = new Date();
     let startYearWeek = today.toJSON().substring(0, 4) + "-" + getWeek(today)
   
@@ -179,10 +179,14 @@ replaceWeek = (gridData) =>{
     console.log(selectedUpdateNodes)
     const selectedUpdateData = selectedUpdateNodes.map(node => node.data);
     console.log(selectedUpdateData);
-    let gridSave = `[{"yearWeek": "${this.state.yearWeek}", "userID": "Bob", "healthData": ${JSON.stringify(selectedUpdateData)}}]`;
+    let email = sessionStorage.email;
+    console.log('email: ' + email)
+    let gridSave = `[{"yearWeek": "${this.state.yearWeek}", "key": "${email + this.state.yearWeek}", "userID": "Bob", "healthData": ${JSON.stringify(selectedUpdateData)}}]`;
     console.log(gridSave);
 
     this.setState({gridData: gridSave})
+
+    
 
     this.replaceWeek(gridSave)
     const selectedDataString = selectedUpdateData
