@@ -52,13 +52,13 @@ function NavBar() {
 					</li>
 				</ul>
 			</div>
-      <div>
-      <NavDropdown title="My Account" className="basic-nav-dropdown">
-        <NavDropdown.Item href="">View Account</NavDropdown.Item>
-        <NavDropdown.Item href="#">Settings</NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item href="#">Log Out</NavDropdown.Item>
-      </NavDropdown>
+		<div className = "container-fluid justify-content-end ">
+			<NavDropdown title="My Account" className="basic-nav-dropdown">
+				<NavDropdown.Item href="">View Account</NavDropdown.Item>
+				<NavDropdown.Item href="#">Settings</NavDropdown.Item>
+				<NavDropdown.Divider />
+				<NavDropdown.Item href="#">Log Out</NavDropdown.Item>
+			</NavDropdown>
       </div>
 		</nav>
 	);
