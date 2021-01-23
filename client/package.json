@@ -18,6 +18,7 @@
     "ag-grid-react": "^25.0.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
+    "cryptojs": "^2.5.3",
     "date-fns": "^2.16.1",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
