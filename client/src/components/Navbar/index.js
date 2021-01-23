@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import { NavDropdown } from "react-bootstrap";
 
+
 function NavBar() {
 	return (
 		<nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
