@@ -3,6 +3,7 @@
 .footer {
   min-height: 100px;
   position: relative;
+  margin-top: 2em;
 }
 
 .footer span {

@@ -4,6 +4,7 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import { withRouter} from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 
 class App extends Component {
   constructor(props) {
@@ -100,9 +101,11 @@ componentDidMount() {
           width: '1000px'
         }}
       >
-    <button type="button" class="btn-info" onClick={this.onButtonClick}>
-        Play Selected Video
-    </button>
+   <div className="mb-2">
+    <Button className="ex btn-circle" onClick={this.onButtonClick}>
+                                  Play Selected Video
+        </Button>
+        </div>
 
 
 
