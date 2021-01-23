@@ -26,3 +26,11 @@
   justify-items: right;
   color: #5497a7ff;
 }
+
+p{
+  font-size: large;
+}
+
+a{
+  color:#5497a7ff!important;
+}
