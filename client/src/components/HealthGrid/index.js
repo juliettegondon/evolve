@@ -228,10 +228,10 @@ pickerHandler= (date)=> {
 							>
 								Save Week
 							</Button>
-							<Button className="ex btn-circle" onClick={this.clearGrid}>
+							<Button className="ex btn-circle ml-1" onClick={this.clearGrid}>
 								Clear Grid
 							</Button>
-							<Button className="ex btn-circle" onClick={this.eraseWeek}>
+							<Button className="ex btn-circle ml-1" onClick={this.eraseWeek}>
 								Delete Week
 							</Button>
 						</ButtonGroup>

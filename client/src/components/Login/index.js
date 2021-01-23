@@ -11,8 +11,17 @@ class LoginForm extends Component {
     state = {
         loggedIn: false,
         email: "",
-        password: ""
+        password: "",
+        loginDate: ""
     }
+
+maskPassword = event =>{
+
+    // let date = new Date().toJSON().substring(0, 10)
+
+
+}
+
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -31,6 +40,10 @@ class LoginForm extends Component {
         console.log('email: ' + this.state.email);
         console.log('password: ' +this.state.password);
         console.log('logged in status: ' + this.state.loggedIn);
+        let date = new Date().toJSON().substring(0, 10);
+        this.setState({loginDate: date})
+        console.log('Login date: ' + date)
+        console.log('Login date: ' + this.state.loginDate)
         let key = this.state.email + this.state.password;
         console.log('Key: ' + key)
         this.setState({
