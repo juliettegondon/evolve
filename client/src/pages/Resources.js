@@ -69,7 +69,7 @@ function Resources() {
 									<h4 className="card-title">
 										{" "}
 										<Link to="/podcast">
-											Insprational Podcast Library
+											Inspirational Podcast Library
 										</Link>
 									</h4>
 									<p className="card-text">
