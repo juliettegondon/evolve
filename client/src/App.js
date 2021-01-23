@@ -17,10 +17,13 @@ import Signup from "./pages/Signup";
 
 
 
+
+
 function App() {
   return (
     <Router>
       <div>
+  
         <NavBar />
         <Wrapper>
           <Route exact path="/" component={Login} />
@@ -40,6 +43,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+    
   );
 }
 
