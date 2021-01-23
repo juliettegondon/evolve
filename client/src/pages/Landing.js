@@ -4,6 +4,7 @@ import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
 import RandomQuote from "../components/RandomQuote"
+import { Image } from 'react-bootstrap'
 
 let user = ' user'
 
@@ -21,7 +22,7 @@ function Landing () {
         <h1>E-VOLVE</h1>
         <h2>connect your mind & body </h2>
       </Hero>
-      <Container style={{ marginTop: 30 }}>
+      <Container style={{ marginTop: 35 }}>
         <Row>
           <Col size="md-12">
             <h1 className="text-center">{'welcome' + user} </h1>
@@ -36,18 +37,26 @@ function Landing () {
           </Col>
         </Row>
       
+        <div>
         <Row>
           <Col size="md-12">
             <p>
               Welcome to E-Volve. Live life with less stress, while actively working 
               on your personal wellness evolution. Stronger. Healthier. More resilient. Happier.
-              Manage it all, right here. 
+              Manage it all, <em>right here.</em>
+      
+              <br>
+              </br>
               Whether you want to get into better physical shape, 
               become more mindful and manage feelings and thoughts, or even keep track of your health data and informatics, 
               let E-Volve be your private online journal and resource library.
             </p>
+            <Image src="../../evolveskyscape.jpeg" className="mb-2" fluid style={{ marginBottom: 5 }}/>
+
+  
           </Col>
         </Row>
+        </div>
       </Container>
     </div>
   )}
