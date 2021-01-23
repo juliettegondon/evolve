@@ -8,6 +8,8 @@ const userSchema = new Schema({
   email: {type: String, required: true},
   password: {type: String, required: true, minlength: 5},
   displayName: {type: String},
+  enrollDate: {type: String},
+  userID: {type: String},
   date: {type: Date, default: Date.now}
 });
 

@@ -12,7 +12,8 @@ class LoginForm extends Component {
         loggedIn: false,
         email: "",
         password: "",
-        loginDate: ""
+        loginDate: "",
+        userName:''
     }
 
 maskPassword = event =>{
@@ -59,6 +60,7 @@ axios.get('/api/user/'+ this.state.email)
             sessionStorage.setItem('loginStatus', this.state.loggedIn)
             sessionStorage.setItem('user', response.data.displayName)
             sessionStorage.setItem('email', response.data.email)
+            sessionStorage.setItem('fullName', response.data.name)           
             console.log('successful signup')
             console.log('logged in status: ' + this.state.loggedIn)
             alert('Welcome to Evolve !')
