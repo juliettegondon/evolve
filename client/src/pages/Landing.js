@@ -51,7 +51,7 @@ function Landing () {
               become more mindful and manage feelings and thoughts, or even keep track of your health data and informatics, 
               let E-Volve be your private online journal and resource library.
             </p>
-            <Image src="../../evolveskyscape.jpeg" className="mb-2" fluid style={{ marginBottom: 5 }}/>
+            <Image src="../../images/evolveskyscape.jpeg" className="mb-2" fluid style={{ marginBottom: 5 }}/>
 
   
           </Col>

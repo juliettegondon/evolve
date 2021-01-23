@@ -97,7 +97,7 @@ class App extends Component {
 				<Container style={{ marginTop: 30 }}>
 					<Row>
 						<Col size="md-12">
-							<Image src="../../evolvepod2.jpeg" fluid />
+							<Image src="../../images/evolvepod2.jpeg" fluid />
 						</Col>
 					</Row>
 				</Container>
