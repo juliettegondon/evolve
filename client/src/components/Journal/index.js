@@ -14,7 +14,7 @@ function Journal(props) {
 	let history = useHistory();
 
 	function checkLogin() {
-	  if(!sessionStorage.loggedIn){
+	  if(!sessionStorage.loginStatus){
 		  alert('Please log in!')
 	  history.push("/login");
 	}}
