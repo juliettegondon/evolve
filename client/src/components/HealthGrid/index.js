@@ -9,6 +9,7 @@ import { withRouter} from 'react-router-dom'
 import { Button } from 'react-bootstrap';
 import { ButtonGroup } from 'react-bootstrap';
 import Col from "../Col";
+import EmailButton from "../EmailButton"
 
 class App extends Component {
   constructor(props) {
@@ -237,7 +238,7 @@ pickerHandler= (date)=> {
 					</Col>
 				</div>
 
-
+      
 
         <AgGridReact
           onGridReady={params => (this.gridApi = params.api)}
@@ -247,12 +248,8 @@ pickerHandler= (date)=> {
           animateRows={this.state.animateRows}
           rowHeight={this.state.rowHeight}
         ></AgGridReact>
+        <EmailButton></EmailButton>
         
-        <ButtonGroup size="sm" className="mb-2">
-        <Button className="ex btn-circle" /* onClick={this.onExportButtonClick} */>
-								Export to MyChart     
-        </Button>
-        </ButtonGroup>
       
       </div>
     );
