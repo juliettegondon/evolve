@@ -94,7 +94,7 @@ class App extends Component {
 	}
 
 	getData = () => {
-		fetch("/api/exercise/" + this.state.yearWeek, {
+		fetch("/api/exercise/key/" + sessionStorage.email + this.state.yearWeek, {
 			headers: {
 				"Content-Type": "application/json",
 				Accept: "application/json",
@@ -146,7 +146,7 @@ class App extends Component {
 	};
 
 	eraseWeek = () => {
-		fetch("/api/exercise/" + this.state.yearWeek, {
+		fetch("/api/exercise/key/" + sessionStorage.email + this.state.yearWeek, {
 			method: "DELETE",
 		})
 			.then((result) => result.text())
