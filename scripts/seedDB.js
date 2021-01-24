@@ -172,6 +172,23 @@ const userSeed = [
      "password": "123456"
   }
 ];
+const mindSeed = [
+  {  date: '123415',
+     mood: 'tired',
+     reflection: 'aldjfkadj',
+     email: 'jg@evolve.us'
+  },
+  {  date: '123415',
+     mood: 'really tired',
+     reflection: 'aldjfkadjaa',
+     email: 'jg@evolve.us'
+  },
+  {  date: '123415',
+  mood: 'so tired',
+  reflection: 'aldjfkadjaadgdsga',
+  email: 'jg@evolve.us'
+}
+];
 
 
 db.Health
@@ -197,10 +214,22 @@ db.Health
     console.error(err);
     process.exit(1);
   });
-
+/* 
   db.User
   .remove({})
   .then(() => db.User.collection.insertMany(userSeed))
+  .then(data => {
+    console.log(data.result.n + " User records inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  }); */
+
+  db.Mind
+  .remove({})
+  .then(() => db.Mind.collection.insertMany(userSeed))
   .then(data => {
     console.log(data.result.n + " User records inserted!");
     process.exit(0);
