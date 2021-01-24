@@ -13,4 +13,10 @@ router
   .put(exerciseController.update)
   .delete(exerciseController.remove);
 
+  router
+  .route("/key/:key")
+  .get(exerciseController.findByKey)
+  .put(exerciseController.update)
+  .delete(exerciseController.remove);
+
 module.exports = router;
