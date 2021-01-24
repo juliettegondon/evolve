@@ -1,15 +1,15 @@
 const router = require("express").Router();
-const mindController = require("../../controllers/healthController");
+const mindController = require("../../controllers/mindController");
 
-// Matches with "/api/health"
+// Matches with "/api/mind"
 router.route("/")
   .get(mindController.findAll)
   .post(mindController.create);
 
-// Matches with "/api/health/:id"
+// Matches with "/api/mind/:id"
 router
-  .route("/:yearWeek")
-  .get(mindController.findByYearWeek)
+  .route("/mind/:email/")
+  .get(mindController.findByEmail)
   .put(mindController.update)
   .delete(mindController.remove);
 
