@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import "./style.css";
 import { Card } from "react-bootstrap";
 import { InputGroup } from "react-bootstrap";
@@ -7,18 +7,57 @@ import { Button } from "react-bootstrap";
 import { ButtonGroup } from "react-bootstrap";
 import Col from "../Col";
 import Slider from "../Slider";
-import { useHistory } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
-function Journal(props) {
+class App extends Component {
+	constructor(props){
+		super(props);
+		this.state = {
+			date:"",
+			mood:"",
+			reflection:"",
+		}
+	}
 
-	let history = useHistory();
+	componentDidMount(){
+		if (!sessionStorage.loginStatus) {
+			alert("please log in !");
+			this.props.history.push("/login");
+		}
 
-	function checkLogin() {
-	  if(!sessionStorage.loginStatus){
-		  alert('Please log in!')
-	  history.push("/login");
-	}}
+		let today = new Date();
+		this.setState({ date:today }, this.getData);
+		console.log(this.state.date)
+	}
 
+	getData = () => {
+		let email = sessionStorage.email;
+		console.log(email);
+		fetch("/api/mind/email/" + email, {
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+			}
+		}) 
+		.then((result) => result.text())
+		.then((result) => console.log("mind result init" + result))
+/* 			.then((mood) => this.setState({ mood: mood.moodData }))
+			.then((reflection) => this.setState({ reflection: reflection.reflectionData}))
+			.catch((error) => {
+				fetch("exerciseTemplate.json", {
+					headers: {
+						"Content-Type": "application/json",
+						Accept: "application/json",
+					},
+				})
+					.then((result) => result.json())
+					.then((mood) => this.setState({ moodData }))
+					.then((reflection) => this.setState({ reflection: reflection.reflectionData}))
+			});  */
+	};
+	
+
+render(){
 	return (
 		<div>
 			<Col size="md-12">
@@ -68,7 +107,7 @@ function Journal(props) {
 
 						<Slider></Slider>
 
-						{checkLogin()}
+
 
 						<button type="submit" className="btn btn-primary myButton">
 							Save Reflection
@@ -79,5 +118,7 @@ function Journal(props) {
 		</div>
 	);
 }
+}
 
-export default Journal;
+
+export default withRouter(App);

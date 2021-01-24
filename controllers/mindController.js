@@ -9,9 +9,9 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  findByYearWeek: function(req, res) {
+  findByEmail: function(req, res) {
     db.Mind
-      .findOne({yearWeek:req.params.yearWeek})
+      .find({email:req.params.email})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
