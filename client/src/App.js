@@ -4,7 +4,7 @@ import Landing from "./pages/Landing";
 import Physical from "./pages/Physical";
 import Mental from "./pages/Mental";
 import Resources from "./pages/Resources";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper";
 import Podcast from "./pages/Podcast";
@@ -14,6 +14,7 @@ import Exercise from "./pages/Exercise";
 import ContactUs from "./pages/ContactUs";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import MyAccount from "./pages/MyAccount";
 
 
 
@@ -38,6 +39,7 @@ function App() {
           <Route exact path="/contactus" component={ContactUs} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
+          <Route exact path="/myaccount" component={MyAccount} />
 
         </Wrapper>
         <Footer />
