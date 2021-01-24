@@ -3,7 +3,7 @@ const db = require("../models");
 // Defining methods for the mindController
 module.exports = {
   findAll: function(req, res) {
-    db.Minds
+    db.Mind
       .find(req.query)
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
@@ -12,7 +12,6 @@ module.exports = {
   findByEmail: function(req, res) {
     db.Mind
       .find({email:req.params.email})
-      .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

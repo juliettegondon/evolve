@@ -11,7 +11,7 @@ module.exports = {
   },
   findByKey: function(req, res) {
     db.Exercise
-      .findOne({key:req.params.key})
+      .findOne({yearWeek:req.params.key})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

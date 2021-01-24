@@ -191,29 +191,29 @@ const mindSeed = [
 ];
 
 
-// db.Health
-//   .remove({})
-//   .then(() => db.Health.collection.insertMany(healthSeed))
-//   .then(data => {
-//     console.log(data.result.n + " Health records inserted!");
-//     process.exit(0);
-//   })
-//   .catch(err => {
-//     console.error(err);
-//     process.exit(1);
-//   });
+db.Health
+  .remove({})
+  .then(() => db.Health.collection.insertMany(healthSeed))
+  .then(data => {
+    console.log(data.result.n + " Health records inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
 
-//   db.Exercise
-//   .remove({})
-//   .then(() => db.Exercise.collection.insertMany(exerciseSeed))
-//   .then(data => {
-//     console.log(data.result.n + " Exercise records inserted!");
-//     process.exit(0);
-//   })
-//   .catch(err => {
-//     console.error(err);
-//     process.exit(1);
-//   });
+  db.Exercise
+  .remove({})
+  .then(() => db.Exercise.collection.insertMany(exerciseSeed))
+  .then(data => {
+    console.log(data.result.n + " Exercise records inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
 /* 
   db.User
   .remove({})
@@ -229,7 +229,7 @@ const mindSeed = [
 
   db.Mind
   .remove({})
-  .then(() => db.Mind.collection.insertMany(mindSeed))
+  .then(() => db.Mind.collection.insertMany(userSeed))
   .then(data => {
     console.log(data.result.n + " User records inserted!");
     process.exit(0);

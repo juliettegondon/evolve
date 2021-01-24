@@ -8,7 +8,7 @@ router.route("/")
 
 // Matches with "/api/mind/:id"
 router
-  .route("/email/:email/")
+  .route("/mind/:email/")
   .get(mindController.findByEmail)
   .put(mindController.update)
   .delete(mindController.remove);
