@@ -9,7 +9,7 @@ import { withRouter} from 'react-router-dom'
 import { Button } from 'react-bootstrap';
 import { ButtonGroup } from 'react-bootstrap';
 import Col from "../Col";
-import EmailButton from "../EmailButton"
+
 
 class App extends Component {
   constructor(props) {
@@ -168,7 +168,7 @@ clearGrid = () => {
 }
 
 replaceWeek = (gridData) =>{
-  console.log(this.state.saveFlag)
+
   if (!this.state.saveFlag) { this.saveWeek(gridData)
   }
   else {
@@ -180,15 +180,13 @@ replaceWeek = (gridData) =>{
   onReplaceButtonClick = () => {
     this.gridApi.selectAll();
     const selectedUpdateNodes = this.gridApi.getSelectedNodes();
-    console.log(selectedUpdateNodes)
     const selectedUpdateData = selectedUpdateNodes.map(node => node.data);
-    console.log(selectedUpdateData);
     let email = sessionStorage.email;
-    console.log('email: ' + email)
     let gridSave = `[{"yearWeek": "${this.state.yearWeek}", "key": "${email + this.state.yearWeek}", "userID": "Bob", "healthData": ${JSON.stringify(selectedUpdateData)}}]`;
     console.log(gridSave);
-
     this.setState({gridData: gridSave})
+
+  
 
     
 
@@ -202,9 +200,15 @@ replaceWeek = (gridData) =>{
 pickerHandler= (date)=> {
   console.log(date)
   let pickedDate = new Date(date).toJSON().substring(0, 4) + "-" + getWeek(date)
-  console.log(pickedDate)
+
 
    this.setState({yearWeek: pickedDate},  this.getData)
+}
+
+onBtnExport = () => {
+  this.gridApi.selectAll();
+  const selectGridText = this.gridApi.exportDataAsCsv();
+  console.log(selectGridText);
 }
 
 
@@ -248,7 +252,9 @@ pickerHandler= (date)=> {
           animateRows={this.state.animateRows}
           rowHeight={this.state.rowHeight}
         ></AgGridReact>
-        <EmailButton></EmailButton>
+
+        
+        <Button className="btn-circle" onClick={this.onBtnExport}>     Export Medical Records</Button>
         
       
       </div>
