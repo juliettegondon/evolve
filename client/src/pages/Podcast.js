@@ -4,6 +4,7 @@ import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
 import Podcasts from "../components/Podcasts"
+import { Image } from "react-bootstrap"
 
 function PodcastLibrary() {
   return (
@@ -15,6 +16,8 @@ function PodcastLibrary() {
       <Container style={{ marginTop: 30 }}>
         <Row>
           <Col size="md-12">
+
+          <Image src="../../images/evolvepod2.jpeg" fluid />
             <p> 
             <Podcasts></Podcasts>
             </p>

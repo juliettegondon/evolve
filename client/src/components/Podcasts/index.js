@@ -93,15 +93,6 @@ class App extends Component {
 					width: "900px",
 				}}
 			>
-        <div className="mb-2">
-				<Container style={{ marginTop: 30 }}>
-					<Row>
-						<Col size="md-12">
-							<Image src="../../images/evolvepod2.jpeg" fluid />
-						</Col>
-					</Row>
-				</Container>
-        </div>
 
 <div className="mb-2">
 <Button className="ex btn-circle" onClick={this.onButtonClick}>
