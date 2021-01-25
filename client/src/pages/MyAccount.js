@@ -29,7 +29,7 @@ function MyAccount() {
 				<Container style={{ marginTop: 30 }}>
 					<Row>
 						<Col size="md-12">
-							<h1>My Account Information:</h1>
+							<h1 className="text-center">{name+"'s Account Information:"}</h1>
                             <p></p>
                             <h3 className="text-center">{'Name:' + name} </h3>
                             <h3 className="text-center">{'Username:' + user} </h3>
