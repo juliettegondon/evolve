@@ -108,7 +108,7 @@ componentDidMount() {
     }
 
 getData = () =>{
-  fetch('/api/health/' + this.state.yearWeek, {
+  fetch('/api/health/key/' + sessionStorage.email + this.state.yearWeek, {
     headers : { 
       'Content-Type': 'application/json',
       'Accept': 'application/json'
@@ -144,7 +144,7 @@ this.getData()
 }
 
 eraseWeek = () =>{
-  fetch('/api/health/' + this.state.yearWeek, {
+  fetch('/api/health/key/' + sessionStorage.email + this.state.yearWeek, {
     method: 'DELETE',
   })
     .then(result => result.text())

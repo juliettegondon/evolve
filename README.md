@@ -35,4 +35,4 @@ React, AG-Grid, Node, RandomQuotesAPI, CryptoJS, MaterialUI, Bootstrap, React Ho
 
 GitHub Repository: https://github.com/juliettegondon/evolve
 Heroku Production Link: https://e-volve.herokuapp.com
-Deployed Custom Domain: www.e-volve.us
+Deployed Custom Domain: www.e-volve.life

@@ -5,6 +5,10 @@ const userController = require("../../controllers/userController");
 router.route("/")
   .post(userController.create);
 
+
+  // alert('Elmer Fudd')
+
+
 // Matches with "/api/user/:id"
 router
   .route("/:email")

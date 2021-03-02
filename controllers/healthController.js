@@ -15,6 +15,12 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  findByKey: function(req, res) {
+    db.Health
+      .findOne({key:req.params.key})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   create: function(req, res) {
     db.Health
       .create(req.body)
@@ -32,6 +38,13 @@ console.log(req.params.yearWeek)
   remove: function(req, res) {
     db.Health
       .findOne({yearWeek:req.params.yearWeek})
+      .then(dbModel => dbModel.remove())
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  removeByKey: function(req, res) {
+    db.Health
+      .findOne({key:req.params.key})
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

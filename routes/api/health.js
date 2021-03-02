@@ -14,4 +14,11 @@ router
   .patch(healthController.update)
   .delete(healthController.remove);
 
+  router
+  .route("/key/:key")
+  .get(healthController.findByKey)
+  .put(healthController.update)
+  .patch(healthController.update)
+  .delete(healthController.removeByKey);
+
 module.exports = router;

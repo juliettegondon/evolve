@@ -28,7 +28,7 @@ class SignUpForm extends Component {
 
     sendFormData = event => {
         event.preventDefault();
-        let userID = Math.floor((Math.random() * 100000000000) + 10000)
+        let userID = Math.floor((Math.random() * 100000000000) + 100000)
         console.log('handleSubmit')
         console.log(this.state.name);
         console.log(this.state.email);
@@ -37,6 +37,7 @@ class SignUpForm extends Component {
         console.log(userID);
         let date = new Date().toJSON().substring(0, 10);
         this.setState({enrollDate: date})
+        console.log(this.state.enrollDate)
         this.setState({
             redirectTo: '/'
         })
@@ -57,7 +58,8 @@ axios.post('/api/user',{
             sessionStorage.setItem('loginStatus', this.state.loggedIn)
             sessionStorage.setItem('user', response.data.displayName)
             sessionStorage.setItem('email', response.data.email)
-            sessionStorage.setItem('email', response.data.userID)
+            sessionStorage.setItem('userID', response.data.userID)
+            sessionStorage.enrollDate('enrollDate', response.data.enrollDate)
             this.props.history.push('/landing')
             } 
         else {
