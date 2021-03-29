@@ -2,7 +2,7 @@
 
 ## Project Description
 
-E-Volve is your one stop application to live life with less stress, reflect on your mental and physical health, and get inspired to find new meditations and fitness classes to enhance your overall well-being. With this application you can also track daily your physical activity, feelings and thoughts, and reflect back on them at any point you’d like.
+E-Volve is a one stop application to live life with less stress, reflect on your mental and physical health, and get inspired to find new meditations and fitness classes to enhance your overall well-being. With this application you can also track daily your physical activity, feelings and thoughts, and reflect back on them at any point you’d like. This was created as a final project for the UCONN Coding Boot Camp by Juliette Gondon, Frank Salvo, and Andrea Hayward. 
 
 ## Deployed Images
 ![image](https://user-images.githubusercontent.com/67828728/105783190-e5ee9d80-5f43-11eb-9dce-97e5de7d9434.png)
